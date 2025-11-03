@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router';
 
-const Register = ({ onSwitchToLogin }) => {
+const Register = () => {
     return (
         <div className="auth-container">
             <div className="login-card" role="region" aria-labelledby="register-title">
@@ -35,7 +36,7 @@ const Register = ({ onSwitchToLogin }) => {
 
                     <div className="form-actions">
                         <button className="btn-primary" type="submit">Registrarse</button>
-                        <button type="button" className="secondary-link" onClick={onSwitchToLogin}>Volver</button>
+                        <Link to="/" className="secondary-link" aria-label="Volver a iniciar sesión">Volver a iniciar sesión</Link>
                     </div>
 
                     <div className="login-note">Al registrarte aceptas los términos y condiciones.</div>

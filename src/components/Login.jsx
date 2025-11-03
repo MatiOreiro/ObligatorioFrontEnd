@@ -1,34 +1,39 @@
-import React, { useRef, useState } from 'react'
-import { useDispatch } from 'react-redux';
-import axios from 'axios';
-import { guardarUsuario } from '../features/usuario.slice';
+import { useState } from 'react'
+import { Link } from 'react-router';
+import api from '../data/api';
+import { useForm } from 'react-hook-form';
+import { joiResolver } from '@hookform/resolvers/joi';
+import { loginSchema } from '../validators/auth.validators.js';
 
-const Login = ({ onSwitchToRegister }) => {
-    const dispatch = useDispatch();
+const Login = () => {
 
-    const userRef = useRef();
-    const passwordRef = useRef();
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: joiResolver(loginSchema)
+    });
+
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError('');
+    const onSubmit = (data) => {
         setLoading(true);
+        console.log("on submit data", data);
 
-        try {
-            const response = await axios.post('http://localhost:3000/v1/auth/login', {
-                username: userRef.current.value,
-                password: passwordRef.current.value
+
+        api.post('/auth/login', {
+            username: data.username,
+            password: data.password
+        })
+            .then(response => {
+                console.log("Login successful:", response.data);
+                localStorage.setItem('token', response.data.token);
+                
+            }
+            ).catch(error => {
+                console.error("Login error:", error);
+                // Handle login error (e.g., show error message)
+            })
+            .finally(() => {
+                setLoading(false);
             });
-            // dispatch token (you may want to store user object instead)
-            dispatch(guardarUsuario(response.data.token));
-        } catch (err) {
-            console.error('Error al iniciar sesión:', err);
-            setError((err?.response?.data?.message) || 'No se pudo iniciar sesión. Verifique credenciales.');
-        } finally {
-            setLoading(false);
-        }
     }
 
     return (
@@ -42,22 +47,22 @@ const Login = ({ onSwitchToRegister }) => {
                     </div>
                 </div>
 
-                <form className="login-form" onSubmit={handleSubmit} noValidate>
+                <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
                     <div className="field">
                         <label htmlFor="loginUser">Usuario</label>
-                        <input id="loginUser" name="username" type="text" ref={userRef} placeholder="Usuario" autoComplete="username" required />
+                        <input id="loginUser" type="text" placeholder="Usuario" {...register("username")} />
+                        {errors.username && <span className="error-message" role="alert">{errors.username.message}</span>}
                     </div>
 
                     <div className="field">
                         <label htmlFor="loginPassword">Contraseña</label>
-                        <input id="loginPassword" name="password" type="password" ref={passwordRef} placeholder="••••••••" autoComplete="current-password" required />
+                        <input id="loginPassword" type="password" placeholder="••••••••" {...register("password")} />
+                        {errors.password && <span className="error-message" role="alert">{errors.password.message}</span>}
                     </div>
-
-                    {error && <div className="error" role="alert" aria-live="assertive">{error}</div>}
 
                     <div className="form-actions">
                         <button className="btn-primary" type="submit" disabled={loading}>{loading ? 'Entrando…' : 'Iniciar sesión'}</button>
-                        <button type="button" className="secondary-link" onClick={onSwitchToRegister} aria-label="Crear cuenta">Crear cuenta</button>
+                        <Link to="/register" className="secondary-link" aria-label="Crear una cuenta">Crear una cuenta</Link>
                     </div>
 
                     <div className="login-note">¿Problemas para entrar? Contacta al administrador.</div>
