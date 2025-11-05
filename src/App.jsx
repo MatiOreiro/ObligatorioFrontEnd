@@ -3,13 +3,13 @@ import './App.css'
 import Acceso from './components/Acceso'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
-import Transacciones from './components/Transacciones'
 import { BrowserRouter, Routes, Route } from 'react-router'
 import Login from './components/Login'
 import Register from './components/Register'
 import NoEncontrado from './components/NoEncontrado'
 import Contenedor from './components/Contenedor'
 import ProtectedRoute from './components/ProtectedRoute'
+import Dashboard from './components/Dashboard'
 
 function App() {
 
@@ -21,7 +21,7 @@ function App() {
           <Route path='/' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/transacciones' element={<ProtectedRoute />} >
-            <Route path='/transacciones' element={<Transacciones />} />
+            <Route path='/transacciones' element={<Dashboard />} />
           </Route>
           <Route path='*' element={<NoEncontrado />} />
         </Route>
