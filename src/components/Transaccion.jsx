@@ -5,13 +5,13 @@ const Transaccion = ({ transaccion }) => {
 const fecha = new Date(transaccion.fecha).toLocaleDateString()
 
 return (
-    <li>
+    <div>
         <strong>{transaccion.tipo}</strong> — ${transaccion.monto} • {fecha}
         <div>
             {transaccion.categoria.nombre}
             {transaccion.descripcion ? ` — ${transaccion.descripcion}` : ''}
         </div>
-    </li>
+    </div>
 )
 }
 

@@ -14,7 +14,9 @@ const Transacciones = () => {
             <h2>Transacciones</h2>
             <ul>
                 {transacciones.map(transaccion => (
-                    <Transaccion key={transaccion._id} transaccion={transaccion} />
+                    <li key={transaccion._id}>
+                        <Transaccion transaccion={transaccion} />
+                    </li>
                 ))}
             </ul>
         </div>
