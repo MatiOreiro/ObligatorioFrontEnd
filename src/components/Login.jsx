@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router';
+import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router';
 import api from '../data/api';
 import { useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
@@ -7,11 +7,20 @@ import { loginSchema } from '../validators/auth.validators.js';
 
 const Login = () => {
 
+    const navigate = useNavigate();
+
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: joiResolver(loginSchema)
     });
 
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            navigate('/transacciones');
+        }
+    }, [])
 
     const onSubmit = (data) => {
         setLoading(true);
@@ -25,7 +34,7 @@ const Login = () => {
             .then(response => {
                 console.log("Login successful:", response.data);
                 localStorage.setItem('token', response.data.token);
-                
+                navigate('/transacciones');
             }
             ).catch(error => {
                 console.error("Login error:", error);
