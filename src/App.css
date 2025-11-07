@@ -1,6 +1,7 @@
 :root {
   --primary:#0047AB;          /* azul cobalto */
   --primary-600:#003a8f;
+  --primary-light: #4f8ef7;   /* azul más claro para bodies pequeños */
   --bg:#0b0f14;
   --panel:#0f1520;
   --panel-2:#121a26;
@@ -16,8 +17,10 @@
 }
 
 /* Global page background & resets to ensure full-screen background on mobile */
+
 html, body, #root {
-  height: 100%;
+  /* Esto queda comentado porque sino no se ve el background hasta el final */
+  /* height: 100%; */
 }
 
 #root {
@@ -39,6 +42,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   min-height: 100vh;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
 }
 
 .logo {
@@ -206,3 +214,108 @@ body {
 .read-the-docs {
   color: #888;
 }
+
+/* ----- Transaccion card ----- */
+.transaccion-card {
+  width: 100%;
+  max-width: 720px;
+  margin: 0.6rem auto;
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  /* same border trick as login-card for consistent border */
+  border: 2px solid transparent;
+  background-image: linear-gradient(180deg, color-mix(in oklab, var(--primary-light) 18%, var(--panel-2))), linear-gradient(90deg, var(--primary), var(--primary-600));
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 8px 26px rgba(2,6,23,0.45);
+  color: var(--text);
+}
+.transaccion-body {
+  /* ligeramente más oscuro que antes para mayor contraste */
+  background: linear-gradient(180deg, rgba(79,142,247,0.04), rgba(2,6,23,0.18));
+  border-radius: calc(var(--radius) - 6px);
+  padding: 0.9rem 1rem;
+}
+.transaccion-header {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:1rem;
+}
+.transaccion-top {
+  display:flex;
+  align-items:center;
+  gap:0.75rem;
+}
+.transaccion-type {
+  font-weight:700;
+  padding:0.25rem 0.6rem;
+  border-radius: 10px;
+  font-size:0.88rem;
+  color:var(--text);
+}
+.transaccion-type.expense { color: var(--danger); }
+.transaccion-type.income { color: var(--ok); }
+.transaccion-amount { margin-left:0.25rem; color:var(--text); }
+.transaccion-meta { color:var(--muted); font-size:0.9rem; margin-top:0.35rem; }
+.transaccion-desc { margin-top:0.9rem; color:var(--text); opacity:0.95; text-align:left; }
+
+.transaccion-buttons { display:flex; gap:0.5rem; align-items:center; }
+.icon-btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:36px;
+  height:36px;
+  padding:0;
+  border-radius:10px;
+  cursor:pointer;
+  border: 1px solid rgba(255,255,255,0.04);
+  background: transparent;
+}
+.icon-btn svg { display:block; color:var(--muted); }
+.icon-btn.btn-ghost { background: transparent; }
+.icon-btn.btn-ghost:hover svg { color: var(--text); box-shadow: 0 6px 16px rgba(2,71,171,0.06); }
+.icon-btn.btn-primary { background: linear-gradient(90deg, var(--primary), var(--primary-600)); border:none; }
+.icon-btn.btn-primary svg { color: white; }
+.icon-btn.btn-primary:active { transform: translateY(1px); }
+.icon-btn.btn-danger { background: linear-gradient(90deg, #ff6b6b, #ef4444); border:none; }
+.icon-btn.btn-danger svg { color: white; }
+
+
+@media (max-width:640px) {
+  .transaccion-card { max-width: 100%; }
+  .transaccion-header { flex-direction:column; align-items:stretch; }
+  .transaccion-buttons { justify-content:flex-end; }
+}
+
+/* Modal overlay and dialog */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2,6,23,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  padding: 3rem;
+}
+.modal-dialog {
+  width: 100%;
+  max-width: 720px;
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border-radius: 16px;
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--shadow);
+  color: var(--text);
+    border: 2px solid transparent;
+  background-image: linear-gradient(180deg, var(--panel), var(--panel-2)), linear-gradient(90deg, var(--primary), var(--primary-600));
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+}
+.modal-header { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.modal-actions { display:flex; gap:0.5rem; align-items:center; }
+.modal-body { margin-top:0.75rem; text-align:left; }
+.transaccion-detail-list dt { color:var(--muted); font-size:0.85rem; }
+.transaccion-detail-list dd { margin:0 0 0.75rem 0; font-weight:600; }
+
