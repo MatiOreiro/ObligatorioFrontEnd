@@ -4,6 +4,9 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { guardarTransacciones } from '../features/transacciones.slice';
 import api from '../data/api';
+import LineChart from './dashboard/LineChart';
+import LineChartEgresos from './dashboard/LineChartEgresos';
+import PieChartEgresos from './dashboard/PieChartEgresos';
 
 const Dashboard = () => {
     const token = localStorage.getItem('token');
@@ -37,6 +40,9 @@ const Dashboard = () => {
     return (
         <div>
             <h2>Dashboard</h2>
+            <PieChartEgresos />
+            <LineChart />
+            <LineChartEgresos />
             <Transacciones />
         </div>
     )
