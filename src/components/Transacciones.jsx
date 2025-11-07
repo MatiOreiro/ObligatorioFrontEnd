@@ -6,10 +6,14 @@ import { useSelector } from 'react-redux';
 import api from '../data/api';
 import Transaccion from './Transaccion';
 import TransaccionModal from './TransaccionModal';
+import TransaccionEditModal from './TransaccionEditModal';
+import ConfirmDialog from './ConfirmDialog';
 
 const Transacciones = () => {
     const transacciones = useSelector(state => state.transacciones.lista);
     const [selected, setSelected] = useState(null)
+    const [editItem, setEditItem] = useState(null)
+    const dispatch = useDispatch();
 
     const handleDetails = (t) => {
         setSelected(t)
@@ -18,14 +22,19 @@ const Transacciones = () => {
     const handleClose = () => setSelected(null)
 
     // Placeholder edit/delete handlers — adapt to your app's logic
-    const handleEdit = (t) => {
-        // e.g., navigate to edit form or open edit modal
-        console.log('Editar', t)
-    }
+    const handleEdit = (t) => setEditItem(t)
 
-    const handleDelete = (t) => {
-        // e.g., dispatch delete action or call API
-        console.log('Eliminar', t)
+    const [confirmDeleteItem, setConfirmDeleteItem] = useState(null)
+
+    const handleDelete = (t) => setConfirmDeleteItem(t)
+
+    const doDelete = (t) => {
+        const token = localStorage.getItem('token')
+        api.delete(`/transaccion/eliminar/${t._id}`, { headers: { Authorization: `Bearer ${token}` } })
+            .then(() => api.get('/transaccion/filtrar', { headers: { Authorization: `Bearer ${token}` } }))
+            .then(response => dispatch(guardarTransacciones(response.data.transacciones)))
+            .catch(err => console.error('Error al eliminar', err))
+            .finally(() => setConfirmDeleteItem(null))
     }
 
     return (
@@ -41,6 +50,21 @@ const Transacciones = () => {
 
             {selected && (
                 <TransaccionModal transaccion={selected} onClose={handleClose} onEdit={handleEdit} onDelete={handleDelete} />
+            )}
+
+            {editItem && (
+                <TransaccionEditModal transaccion={editItem} onClose={() => setEditItem(null)} />
+            )}
+
+            {confirmDeleteItem && (
+                <ConfirmDialog
+                    title="Eliminar transacción"
+                    message={`¿Seguro que quieres eliminar la transacción de $${confirmDeleteItem.monto}? Esta acción no se puede deshacer.`}
+                    confirmLabel="Eliminar"
+                    cancelLabel="Cancelar"
+                    onConfirm={() => doDelete(confirmDeleteItem)}
+                    onCancel={() => setConfirmDeleteItem(null)}
+                />
             )}
         </div>
     )

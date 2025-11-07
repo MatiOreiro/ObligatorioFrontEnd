@@ -319,3 +319,12 @@ ul {
 .transaccion-detail-list dt { color:var(--muted); font-size:0.85rem; }
 .transaccion-detail-list dd { margin:0 0 0.75rem 0; font-weight:600; }
 
+/* Form fields inside modal (reuse existing .field styles) */
+.modal-body .field { margin-bottom: 0.75rem; }
+.modal-body .field label { display:block; color:var(--muted); margin-bottom:0.25rem; }
+.modal-body .field input[type="text"],
+.modal-body .field input[type="number"],
+.modal-body .field select,
+.modal-body .field textarea { width:100%; padding:0.6rem; border-radius:10px; background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); color:var(--text); }
+
+
