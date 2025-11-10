@@ -17,9 +17,12 @@ const transaccionesSlice = createSlice({
         eliminarTransaccion: (state, action) => {
             state.lista = state.lista.filter(transaccion => transaccion.id !== action.payload.id);
         },
+        limpiarTransacciones: (state) => {
+            state.lista = [];
+        }
     },
 });
 
-export const { agregarTransaccion, eliminarTransaccion, guardarTransacciones } = transaccionesSlice.actions;
+export const { agregarTransaccion, eliminarTransaccion, guardarTransacciones, limpiarTransacciones } = transaccionesSlice.actions;
 
 export default transaccionesSlice.reducer;
