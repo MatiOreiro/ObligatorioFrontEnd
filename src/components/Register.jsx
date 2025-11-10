@@ -4,10 +4,14 @@ import { useForm } from 'react-hook-form';
 import { registerSchema } from '../validators/auth.validators.js';
 import api from '../data/api';
 import { joiResolver } from '@hookform/resolvers/joi';
+import { useDispatch } from 'react-redux';
+import { guardarCuentas } from '../features/usuario.slice';
 
 const Register = () => {
 
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: joiResolver(registerSchema) 
@@ -29,6 +33,17 @@ const Register = () => {
             })
             .catch(error => {
                 console.error('Error en el registro:', error);
+            });
+    }
+
+    const obtenerCuentas = () => {
+        api.get('/cuenta/')
+            .then(response => {
+                console.log('Cuentas obtenidas:', response.data);
+                dispatch(guardarCuentas(response.data.cuentas));
+            })
+            .catch(error => {
+                console.error('Error al obtener cuentas:', error);
             });
     }
 

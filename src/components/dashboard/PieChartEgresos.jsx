@@ -21,13 +21,21 @@ export default function App() {
 
     const transacciones = useSelector((state) => state.transacciones.lista);
     const egresos = transacciones.filter(t => t.tipo === 'egreso');
+    const totalesPorCategoria = egresos.reduce((acc, t) => {
+        const categoria = t.categoria.nombre;
+        if (!acc[categoria]) {
+            acc[categoria] = 0;
+        }
+        acc[categoria] += t.monto;
+        return acc;
+    }, {});
 
     const data = {
-        labels: [...egresos.map(t => t.categoria.nombre)],
+        labels: Object.keys(totalesPorCategoria),
         datasets: [
             {
                 label: '# of Votes',
-                data: [...egresos.map(t => t.monto)],
+                data: [...Object.values(totalesPorCategoria)],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',

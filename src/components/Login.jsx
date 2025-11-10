@@ -4,10 +4,14 @@ import api from '../data/api';
 import { useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { loginSchema } from '../validators/auth.validators.js';
+import { useDispatch } from 'react-redux';
+import { guardarCuentas } from '../features/usuario.slice';
 
 const Login = () => {
 
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: joiResolver(loginSchema)
@@ -34,6 +38,7 @@ const Login = () => {
             .then(response => {
                 console.log("Login successful:", response.data);
                 localStorage.setItem('token', response.data.token);
+                obtenerCuentas();
                 navigate('/dashboard');
             }
             ).catch(error => {
@@ -42,6 +47,17 @@ const Login = () => {
             })
             .finally(() => {
                 setLoading(false);
+            });
+    }
+
+    const obtenerCuentas = () => {
+        api.get('/cuenta/')
+            .then(response => {
+                console.log('Cuentas obtenidas:', response.data);
+                dispatch(guardarCuentas(response.data.cuentas));
+            })
+            .catch(error => {
+                console.error('Error al obtener cuentas:', error);
             });
     }
 

@@ -1,19 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    token: "",
+    cuentas: [],
 };
 
 const usuarioSlice = createSlice({
   name: "usuario",
   initialState,
   reducers: {
-    guardarUsuario: (state, action) => {
-      state.token = action.payload;
+    guardarCuentas: (state, action) => {
+      state.cuentas = action.payload;
     },
+    limpiarCuentas: (state) => {
+      state.cuentas = [];
+    }
   },
 });
 
-export const { guardarUsuario } = usuarioSlice.actions;
-
+export const { guardarCuentas, limpiarCuentas } = usuarioSlice.actions;
 export default usuarioSlice.reducer;

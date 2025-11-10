@@ -1,15 +1,21 @@
 import React, { useState } from 'react'
 import { Outlet, useNavigate, Link } from 'react-router'
 import BurgerMenu from './BurgerMenu'
+import { useDispatch } from 'react-redux';
+import { limpiarTransacciones } from '../features/transacciones.slice';
+import { limpiarCuentas } from '../features/usuario.slice';
 
 const Contenedor = () => {
 
     const loggeado = localStorage.getItem('token') !== null;
 
     const navigate = useNavigate()
+    const dispatch = useDispatch();
 
     const handleLogout = () => {
         localStorage.clear();
+        dispatch(limpiarTransacciones());
+        dispatch(limpiarCuentas());
         navigate('/');
     }
 

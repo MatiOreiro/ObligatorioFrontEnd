@@ -7,6 +7,8 @@ import api from '../data/api';
 import LineChart from './dashboard/LineChart';
 import LineChartEgresos from './dashboard/LineChartEgresos';
 import PieChartEgresos from './dashboard/PieChartEgresos';
+import CrearTransaccionForm from './CrearTransaccionForm';
+import MejorarPlan from './MejorarPlan';
 
 const Dashboard = () => {
     const token = localStorage.getItem('token');
@@ -21,12 +23,7 @@ const Dashboard = () => {
     }, []);
 
     const cargarTransacciones = () => {
-        api.get('/transaccion/filtrar', {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-        })
+        api.get('/transaccion/filtrar')
             .then(response => {
                 console.log('Transacciones cargadas:', response.data);
                 dispatch(guardarTransacciones(response.data.transacciones));
@@ -40,6 +37,8 @@ const Dashboard = () => {
     return (
         <div>
             <h2>Dashboard</h2>
+            <MejorarPlan />
+            <CrearTransaccionForm />
             <PieChartEgresos />
             <LineChart />
             <LineChartEgresos />
