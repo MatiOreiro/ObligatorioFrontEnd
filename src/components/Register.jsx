@@ -16,7 +16,7 @@ const Register = () => {
     useEffect(() => {
             const token = localStorage.getItem('token');
             if (token) {
-                navigate('/transacciones');
+                navigate('/dashboard');
             }
         }, [])
 
@@ -25,7 +25,7 @@ const Register = () => {
             .then(response => {
                 console.log('Registro exitoso:', response.data);
                 localStorage.setItem('token', response.data.token);
-                navigate('/transacciones');
+                navigate('/dashboard');
             })
             .catch(error => {
                 console.error('Error en el registro:', error);

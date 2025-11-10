@@ -20,8 +20,8 @@ function App() {
         <Route path='/' element={<Contenedor />}>
           <Route path='/' element={<Login />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/transacciones' element={<ProtectedRoute />} >
-            <Route path='/transacciones' element={<Dashboard />} />
+          <Route path='/dashboard' element={<ProtectedRoute />} >
+            <Route path='/dashboard' element={<Dashboard />} />
           </Route>
           <Route path='*' element={<NoEncontrado />} />
         </Route>

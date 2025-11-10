@@ -18,7 +18,7 @@ const Login = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            navigate('/transacciones');
+            navigate('/dashboard');
         }
     }, [])
 
@@ -34,7 +34,7 @@ const Login = () => {
             .then(response => {
                 console.log("Login successful:", response.data);
                 localStorage.setItem('token', response.data.token);
-                navigate('/transacciones');
+                navigate('/dashboard');
             }
             ).catch(error => {
                 console.error("Login error:", error);
