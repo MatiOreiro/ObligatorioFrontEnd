@@ -4,6 +4,8 @@ import BurgerMenu from './BurgerMenu'
 import { useDispatch } from 'react-redux';
 import { limpiarTransacciones } from '../features/transacciones.slice';
 import { limpiarCuentas } from '../features/usuario.slice';
+import ImagenPerfil from './ImagenPerfil';
+
 
 const Contenedor = () => {
 
@@ -24,10 +26,10 @@ const Contenedor = () => {
     return (
         <>
             <BurgerMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
-
             <div className="contenedor">
                 <button className="burger-toggle icon-btn btn-ghost" aria-label="Abrir menú" onClick={() => setMenuOpen(true)}>☰</button>
                 <h1>Contenedor Component</h1>
+                {loggeado && <ImagenPerfil />}
                 {loggeado && (<button className="btn-logout" title='cerrarSesion' onClick={handleLogout}>Logout</button>)}
             </div>
             <Outlet />

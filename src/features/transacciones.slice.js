@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { act } from 'react';
 
 const initialState = {
     lista: [],
@@ -19,10 +20,15 @@ const transaccionesSlice = createSlice({
         },
         limpiarTransacciones: (state) => {
             state.lista = [];
-        }
+        },
+        actualizarTransaccion: (state, action) => {
+            const index = state.lista.findIndex(t => t._id === action.payload._id);
+            if (index !== -1) {
+                state.lista[index] = action.payload;
+            }
+        },
     },
 });
 
-export const { agregarTransaccion, eliminarTransaccion, guardarTransacciones, limpiarTransacciones } = transaccionesSlice.actions;
-
+export const { agregarTransaccion, eliminarTransaccion, guardarTransacciones, limpiarTransacciones, actualizarTransaccion } = transaccionesSlice.actions;
 export default transaccionesSlice.reducer;
