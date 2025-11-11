@@ -1,6 +1,6 @@
 import React from 'react'
 import Transacciones from './Transacciones'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { guardarTransacciones } from '../features/transacciones.slice';
 import api from '../data/api';
@@ -16,7 +16,6 @@ const Dashboard = () => {
     const token = localStorage.getItem('token');
 
     const dispatch = useDispatch();
-
     useEffect(() => {
         // re-run when token changes. If there's no token yet, skip the request.
         if (!token) return;
@@ -48,19 +47,19 @@ const Dashboard = () => {
             });
     }
 
-    const [openCreate, setOpenCreate] = React.useState(false);
+    const [openCreate, setOpenCreate] = useState(false);
 
     const openCrear = () => setOpenCreate(true);
     const closeCrear = () => setOpenCreate(false);
 
     return (
         <div>
-            <div style={{display:'flex', alignItems:'center', justifyContent:'center', gap: '1rem', marginBottom: '0.75rem'}}>
-                <h2 style={{margin:0}}>Dashboard</h2>
+            <div className="dashboard-header">
+                <h2 className="dashboard-title">Dashboard</h2>
                 <button className="btn-add" onClick={openCrear} aria-haspopup="dialog" aria-expanded={openCreate}>
-                    <span style={{display:'inline-flex', alignItems:'center', gap:'0.5rem'}}>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 11V5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6z" fill="currentColor"/></svg>
-                        Crear
+                    <span className="btn-add-content">
+                        <svg className="btn-add-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 11V5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6z" fill="currentColor"/></svg>
+                        <span>Crear</span>
                     </span>
                 </button>
             </div>

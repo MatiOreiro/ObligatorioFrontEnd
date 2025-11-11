@@ -245,6 +245,26 @@ ul {
 }
 .btn-add:hover { filter:brightness(1.02); }
 
+/* Dashboard header */
+.dashboard-header {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:1rem;
+  margin-bottom:0.75rem;
+}
+.dashboard-title {
+  margin:0;
+  font-size:1.5rem;
+  font-weight:700;
+}
+.btn-add-content {
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+}
+.btn-add-icon { display:block; color:inherit; }
+
 .secondary-link {
   color:var(--muted);
   font-size:0.9rem;
