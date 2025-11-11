@@ -6,7 +6,7 @@ import api from '../data/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { agregarTransaccion } from '../features/transacciones.slice';
 
-const CrearTransaccionForm = () => {
+const CrearTransaccionForm = ({ onCreate } = {}) => {
     const cuentas = useSelector(state => state.usuario.cuentas);
 
     const dispatch = useDispatch();
@@ -15,7 +15,14 @@ const CrearTransaccionForm = () => {
         resolver: joiResolver(createTransaccionSchema)
     });
 
-    const onSubmit = (data) => {
+    const localSubmit = (data) => {
+        // If a parent provided an onCreate handler, pass validated data to it
+        if (typeof onCreate === 'function') {
+            onCreate(data);
+            return;
+        }
+
+        // Otherwise behave as before and call the API directly
         const payload = { tipo: data.tipo, monto: data.monto, descripcion: data.descripcion, categoria: data.categoria, cuenta: data.cuenta };
         const transaccion = { tipo: data.tipo, monto: data.monto, descripcion: data.descripcion, categoria: { nombre: data.categoria }, cuenta: data.cuenta, fecha: new Date().toISOString() };
         api.post('/transaccion/crear', payload).then(response => {
@@ -26,16 +33,15 @@ const CrearTransaccionForm = () => {
         }).finally(() => {
             // loading
         });
-
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(localSubmit)}>
             <div className='field'>
                 <label>Cuenta</label>
                 <select {...register("cuenta")}>
                     {cuentas.map(c => (
-                        <option value={c._id}>{c.nombre}</option>
+                        <option key={c._id} value={c._id}>{c.nombre}</option>
                     ))}
                 </select>
                 {errors.cuenta && <div className="error" role="alert">{errors.cuenta.message}</div>}

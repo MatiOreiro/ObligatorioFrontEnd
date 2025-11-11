@@ -36,17 +36,6 @@ const Register = () => {
             });
     }
 
-    const obtenerCuentas = () => {
-        api.get('/cuenta/')
-            .then(response => {
-                console.log('Cuentas obtenidas:', response.data);
-                dispatch(guardarCuentas(response.data.cuentas));
-            })
-            .catch(error => {
-                console.error('Error al obtener cuentas:', error);
-            });
-    }
-
     return (
         <div className="auth-container">
             <div className="login-card" role="region" aria-labelledby="register-title">

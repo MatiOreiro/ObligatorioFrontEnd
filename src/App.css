@@ -16,13 +16,6 @@
   --ring: 0 0 0 3px color-mix(in oklab, var(--primary) 25%, transparent);
 }
 
-/* Global page background & resets to ensure full-screen background on mobile */
-
-html, body, #root {
-  /* Esto queda comentado porque sino no se ve el background hasta el final */
-  /* height: 100%; */
-}
-
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -237,6 +230,20 @@ ul {
 .btn-primary:hover { filter:brightness(1.03) saturate(1.03); }
 .btn-primary:active { transform: translateY(1px); }
 .btn-primary[disabled] { opacity:0.6; cursor:not-allowed; }
+.btn-add {
+  background: linear-gradient(90deg, #2ecc71, #1db954);
+  color: white;
+  border: none;
+  padding: 0.55rem 0.85rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(29,185,84,0.14);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn-add:hover { filter:brightness(1.02); }
 
 .secondary-link {
   color:var(--muted);
