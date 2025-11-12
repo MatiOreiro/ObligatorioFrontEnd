@@ -37,7 +37,10 @@ const UltimasTransaccionesCuenta = ({ cuentaId }) => {
     const handleClose = () => setSelected(null)
 
     // Placeholder edit/delete handlers — adapt to your app's logic
-    const handleEdit = (t) => setEditItem(t)
+    const handleEdit = (t) => {
+        console.log('test edit', t);
+        setEditItem(t)
+    }
 
     const [confirmDeleteItem, setConfirmDeleteItem] = useState(null)
 
@@ -83,13 +86,15 @@ const UltimasTransaccionesCuenta = ({ cuentaId }) => {
             )}
 
             {editItem && (
-                <TransaccionEditForm
+                <TransaccionEditModal
                     _id={editItem._id}
                     tipo={editItem.tipo}
                     monto={editItem.monto}
                     categoria={editItem.categoria.nombre}
                     descripcion={editItem.descripcion}
                     handleEdit={setEditItem}
+                    open={true}
+                    onClose={() => setEditItem(null)}
                 />
             )}
 

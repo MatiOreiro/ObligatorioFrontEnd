@@ -24,19 +24,6 @@ const CrearTransaccionForm = ({ onCreate } = {}) => {
             onCreate(data);
             return;
         }
-
-        // Otherwise behave as before and call the API directly
-        const payload = { tipo: data.tipo, monto: data.monto, descripcion: data.descripcion, categoria: data.categoria, cuenta: data.cuenta };
-        const transaccion = { _id: id, tipo: data.tipo, monto: data.monto, descripcion: data.descripcion, categoria: { nombre: data.categoria }, cuentaId: data.cuenta, fecha: new Date().toISOString() };
-        
-        api.post('/transaccion/crear', payload).then(response => {
-            dispatch(agregarTransaccion(transaccion));
-            console.log(payload);
-        }).catch(error => {
-            console.error('Error al crear transacción', error);
-        }).finally(() => {
-            // loading
-        });
     }
 
     return (

@@ -132,7 +132,7 @@ const Dashboard = () => {
                     <UltimasTransaccionesCuenta cuentaId={cuentas[1]._id} />
                 </div>
             )}
-            {/* <Transacciones /> */}
+            <Transacciones />
         </div>
     )
 }
