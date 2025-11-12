@@ -95,9 +95,12 @@ const TransaccionEditModal = ({ _id, tipo, monto, categoria, descripcion, handle
                     }
                 }
             }
+            toast.success(t('toasts.editSuccess'));
             handleEdit(null);
         }).catch(error => {
             console.error('Error al editar transacción', error);
+            toast.error(t('toasts.editError'));
+            setError(t('errors.editTransaction'));
         }).finally(() => setLoading(false));
     }
 
