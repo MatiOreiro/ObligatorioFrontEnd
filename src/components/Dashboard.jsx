@@ -11,6 +11,8 @@ import MejorarPlan from './MejorarPlan';
 import { guardarCuentas } from '../features/usuario.slice';
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
+import { guardarCuentas, guardarImagenPerfil } from '../features/usuario.slice';
+import CambiarImagenPerfil from './CambiarImagenPerfil';
 
 const Dashboard = () => {
     const token = localStorage.getItem('token');
@@ -23,6 +25,7 @@ const Dashboard = () => {
 
         obtenerCuentas();
         cargarTransacciones();
+        obtenerImagenPerfil();
     }, []);
 
     const cargarTransacciones = () => {
@@ -48,6 +51,17 @@ const Dashboard = () => {
             });
     }
 
+    const obtenerImagenPerfil = () => {
+        api.get('/usuario/obtener-imagen')
+            .then(response => {
+                console.log('Imagen de perfil obtenida:', response.data);
+                dispatch(guardarImagenPerfil(response.data.imagenPerfil));
+            })
+            .catch(error => {
+                console.error('Error al obtener imagen de perfil:', error);
+            });
+    }
+
     const [openCreate, setOpenCreate] = useState(false);
 
     const openCrear = () => setOpenCreate(true);
@@ -64,6 +78,7 @@ const Dashboard = () => {
                     </span>
                 </button>
             </div>
+            <CambiarImagenPerfil />
             <CrearTransaccionModal open={openCreate} onClose={closeCrear} />
             <MejorarPlan />
             <PieChartEgresos />

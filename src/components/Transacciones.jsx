@@ -9,6 +9,7 @@ import TransaccionModal from './TransaccionModal';
 import TransaccionEditModal from './TransaccionEditModal';
 import ConfirmDialog from './ConfirmDialog';
 import { useTranslation } from 'react-i18next';
+import TransaccionEditForm from './TransaccionEditForm';
 
 const Transacciones = () => {
     const transacciones = useSelector(state => state.transacciones.lista);
@@ -55,7 +56,14 @@ const Transacciones = () => {
             )}
 
             {editItem && (
-                <TransaccionEditModal transaccion={editItem} onClose={() => setEditItem(null)} />
+                <TransaccionEditForm
+                    _id={editItem._id}
+                    tipo={editItem.tipo}
+                    monto={editItem.monto}
+                    categoria={editItem.categoria.nombre}
+                    descripcion={editItem.descripcion}
+                    handleEdit={setEditItem}
+                />
             )}
 
             {confirmDeleteItem && (

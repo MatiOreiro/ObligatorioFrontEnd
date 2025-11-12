@@ -6,6 +6,8 @@ import { limpiarTransacciones } from '../features/transacciones.slice';
 import { limpiarCuentas } from '../features/usuario.slice';
 import { useTranslation } from 'react-i18next';
 import i18n from "../i18n"
+import ImagenPerfil from './ImagenPerfil';
+
 
 const Contenedor = () => {
 
@@ -32,7 +34,6 @@ const Contenedor = () => {
     return (
         <>
             <BurgerMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
-
             <div className="contenedor">
                 <button className="burger-toggle icon-btn btn-ghost" aria-label="Abrir menú" onClick={() => setMenuOpen(true)}>☰</button>
                 <select onChange={cambiarIdioma} defaultValue={i18n.language} className="language-select" >
@@ -45,6 +46,9 @@ const Contenedor = () => {
                 </select>
                 <h1>{t('name')}</h1>
                 {loggeado && (<button className="btn-logout" title='cerrarSesion' onClick={handleLogout}>{t('logout')}</button>)}
+                <h1>Contenedor Component</h1>
+                {loggeado && <ImagenPerfil />}
+                {loggeado && (<button className="btn-logout" title='cerrarSesion' onClick={handleLogout}>Logout</button>)}
             </div>
             <Outlet />
         </>
