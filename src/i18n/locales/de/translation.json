@@ -1,0 +1,65 @@
+{
+    "name": "OP-Ausgabenmanager",
+    "dashboard": "Instrumententafel",
+    "accounts": "Konten",
+    "aboutUs": "Über uns",
+    "logout": "Abmelden",
+    "buttons": {
+        "close": "Schließen",
+        "cancel": "Abbrechen",
+        "save": "Speichern",
+        "delete": "Löschen",
+        "edit": "Bearbeiten",
+        "creating": "Erstellen...",
+        "create": "Erstellen",
+        "createTransaction": "Transaktion erstellen",
+        "addTransaction": "Erstellen",
+        "planUpdate": "Aktualisieren Sie Ihren Plan",
+        "deleteTransaction": "Transaktion löschen"
+    },
+    "graphs": {
+        "expensesByCategory": "Ausgaben nach Kategorie",
+        "incomes": "Einkommen",
+        "expenses": "Ausgaben",
+        "last7Income": "Einkommen in den letzten 7 Tagen",
+        "last7Expenses": "Ausgaben in den letzten 7 Tagen"
+    },
+    "income": "Einkommen",
+    "outcome": "Ausgabe",
+    "confirmations": {
+        "deleteTransaction": "Möchten Sie die Transaktion über ${{ monto }} wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+        "createTransaction": "Möchten Sie eine {{pendingData.tipo}} über ${{pendingData.monto}} erstellen?",
+        "editTransaction": "Möchten Sie die Änderungen an der Transaktion über ${{monto}} speichern?"
+    },
+    "transactions":{
+        "title": "Transaktionen",
+        "createTransaction":"Neue Transaktion erstellen",
+        "editTransaction":"Transaktion bearbeiten",
+        "deleteTransaction":"Transaktion löschen",
+        "detailsTransaction":"Transaktionsdetails",
+        "account":"Konto",
+        "type":"Transaktionstyp",
+        "amount":"Betrag",
+        "category":"Kategorie",
+        "description":"Beschreibung",
+        "date":"Datum"
+    },
+    "username": "Benutzername",
+    "password": "Passwort",
+    "login": {
+        "title": "Melden Sie sich bei Ihrem Konto an",
+        "welcome": "Greifen Sie auf Ihr Konto zu, um Ihre Transaktionen anzuzeigen und zu verwalten",
+        "register": "Hier registrieren",
+        "submit": "Anmelden",
+        "forgotPassword": "Probleme beim Anmelden? Kontaktieren Sie den Administrator"
+    },
+    "register": {
+        "title": "Konto erstellen",
+        "welcome": "Melden Sie sich an, um die App zu nutzen",
+        "email": "E-Mail",
+        "confirmPassword": "Passwort bestätigen",
+        "submit": "Registrieren",
+        "backToLogin": "Zurück zur Anmeldung",
+        "termsAndConditions": "Mit der Registrierung stimmen Sie den Allgemeinen Geschäftsbedingungen zu."
+    }
+}

@@ -1,0 +1,65 @@
+{
+  "name": "Gestor de gastos OP",
+  "dashboard": "Tablero",
+  "accounts": "Cuentas",
+  "aboutUs": "Sobre nosotros",
+  "logout": "Cerrar sesión",
+  "buttons": {
+    "planUpdate": "Actualiza tu plan",
+    "addTransaction": "Crear",
+    "close": "Cerrar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "creating": "Creando...",
+    "create": "Crear",
+    "createTransaction": "Crear transacción",
+    "deleteTransaction": "Eliminar transacción"
+  },
+  "graphs": {
+    "expensesByCategory": "Gastos por categoría",
+    "incomes": "Ingresos",
+    "expenses": "Gastos",
+    "last7Income": "Ingresos en los últimos 7 días",
+    "last7Expenses": "Gastos en los últimos 7 días"
+  },
+  "income": "Ingreso",
+  "outcome": "Egreso",
+  "confirmations": {
+    "deleteTransaction": "¿Estás seguro de que deseas eliminar la transacción de ${{monto}}? Esta acción no se puede deshacer.",
+    "createTransaction": "¿Desea crear un {{pendingData.tipo}} por ${{pendingData.monto}}?",
+    "editTransaction": "¿Deseas guardar los cambios en la transacción de ${{monto}}?"
+  },
+  "transactions": {
+    "title": "Transacciones",
+    "createTransaction": "Crear nueva transacción",
+    "editTransaction": "Editar transacción",
+    "deleteTransaction": "Eliminar transacción",
+    "detailsTransaction": "Detalles de la transacción",
+    "account": "Cuenta",
+    "type": "Tipo de transacción",
+    "ammount": "Monto",
+    "category": "Categoría",
+    "description": "Descripción",
+    "date": "Fecha"
+  },
+  "username": "Usuario",
+  "password": "Contraseña",
+  "login": {
+    "title": "Iniciar sesión",
+    "welcome": "Accede a tu cuenta para ver y gestionar tus transacciones",
+    "register": "Regístrate aquí",
+    "submit": "Iniciar sesión",
+    "forgotPassword": "¿Problemas para entrar? Contacta al administrador"
+  },
+  "register": {
+    "title": "Crear cuenta",
+    "welcome": "Regístrate para comenzar a usar la app",
+    "email": "Correo electrónico",
+    "confirmPassword": "Repetir contraseña",
+    "submit": "Registrarse",
+    "backToLogin": "Volver a iniciar sesión",
+    "termsAndConditions": "Al registrarte aceptas los términos y condiciones."
+  }
+}

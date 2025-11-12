@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 const BurgerMenu = ({ open, onClose, children }) => {
+  const { t } = useTranslation();
+
   // lock body scroll when open
   useEffect(() => {
     const prev = document.body.style.overflow;
@@ -35,11 +38,11 @@ const BurgerMenu = ({ open, onClose, children }) => {
                 return (
                   <nav className="sidebar-nav">
                     <ul>
-                      <li><Link to="/dashboard" onClick={onClose}>Dashboard</Link></li>
-                      <li><Link to="/transacciones" onClick={onClose}>Transacciones</Link></li>
-                      <li><Link to="/actualizar-plan" onClick={onClose}>Actualizar plan</Link></li>
-                      <li><Link to="/sobre-nosotros" onClick={onClose}>Sobre nosotros</Link></li>
-                      <li><button className="secondary-link" onClick={handleLogout}>Cerrar sesión</button></li>
+                      <li><Link to="/dashboard" onClick={onClose}>{t('dashboard')}</Link></li>
+                      <li><Link to="/transacciones" onClick={onClose}>{t('transactions.title')}</Link></li>
+                      <li><Link to="/actualizar-plan" onClick={onClose}>{t('buttons.planUpdate')}</Link></li>
+                      <li><Link to="/sobre-nosotros" onClick={onClose}>{t('aboutUs')}</Link></li>
+                      <li><button className="secondary-link" onClick={handleLogout}>{t('logout')}</button></li>
                     </ul>
                   </nav>
                 );
@@ -48,9 +51,9 @@ const BurgerMenu = ({ open, onClose, children }) => {
               return (
                 <nav className="sidebar-nav">
                   <ul>
-                    <li><Link to="/" onClick={onClose}>Iniciar sesión</Link></li>
-                    <li><Link to="/register" onClick={onClose}>Registrarse</Link></li>
-                    <li><Link to="/sobre-nosotros" onClick={onClose}>Sobre nosotros</Link></li>
+                    <li><Link to="/" onClick={onClose}>{t('login.title')}</Link></li>
+                    <li><Link to="/register" onClick={onClose}>{t('register.title')}</Link></li>
+                    <li><Link to="/sobre-nosotros" onClick={onClose}>{t('aboutUs')}</Link></li>
                   </ul>
                 </nav>
               );

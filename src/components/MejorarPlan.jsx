@@ -1,7 +1,11 @@
 import React from 'react'
 import api from '../data/api';
+import { useTranslation } from 'react-i18next';
+import i18n from '../i18n';
 
 const MejorarPlan = () => {
+    const { t } = useTranslation();
+
     const handleActualizarPlan = () => {
         api.patch('/usuario/alternar-plan/')
             .then(response => {
@@ -15,7 +19,7 @@ const MejorarPlan = () => {
 
     return (
         <>
-            <button onClick={handleActualizarPlan}>Actualizar Plan</button>
+            <button onClick={handleActualizarPlan}>{t('buttons.planUpdate')}</button>
         </>
     )
 }

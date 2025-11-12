@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next';
 
 const TransaccionModal = ({ transaccion, onClose, onEdit = () => {}, onDelete = () => {} }) => {
     const dialogRef = useRef(null)
+    const { t } = useTranslation();
 
     useEffect(() => {
         // focus the dialog for accessibility
@@ -40,29 +42,29 @@ const TransaccionModal = ({ transaccion, onClose, onEdit = () => {}, onDelete = 
         <div className="modal-overlay" role="presentation" onMouseDown={(e) => { if (e.target.classList.contains('modal-overlay')) onClose() }}>
             <div className="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" ref={dialogRef}>
                 <header className="modal-header">
-                    <h3 id="modal-title">Detalle de transacción</h3>
+                    <h3 id="modal-title">{t('transactions.detailsTransaction')}</h3>
                     <div className="modal-actions">
-                        <button className="icon-btn btn-primary" onClick={() => onEdit(transaccion)} aria-label="Editar transacción">✎</button>
-                        <button className="icon-btn btn-danger" onClick={() => onDelete(transaccion)} aria-label="Eliminar transacción">✕</button>
-                        <button className="btn-ghost" onClick={onClose} aria-label="Cerrar modal">Cerrar</button>
+                        <button className="icon-btn btn-primary" onClick={() => onEdit(transaccion)} aria-label={t('buttons.editTransaction')}>✎</button>
+                        <button className="icon-btn btn-danger" onClick={() => onDelete(transaccion)} aria-label={t('buttons.deleteTransaction')}>✕</button>
+                        <button className="btn-ghost" onClick={onClose} aria-label={t('buttons.close')}>{t('buttons.close')}</button>
                     </div>
                 </header>
 
                 <div className="modal-body">
                     <dl className="transaccion-detail-list">
-                        <dt>Tipo</dt>
+                        <dt>{t('transactions.type')}</dt>
                         <dd>{transaccion.tipo}</dd>
 
-                        <dt>Fecha</dt>
+                        <dt>{t('transactions.date')}</dt>
                         <dd>{fecha}</dd>
 
-                        <dt>Monto</dt>
+                        <dt>{t('transactions.amount')}</dt>
                         <dd>${transaccion.monto}</dd>
 
-                        <dt>Categorías</dt>
+                        <dt>{t('transactions.category')}</dt>
                         <dd>{categorias}</dd>
 
-                        <dt>Descripción</dt>
+                        <dt>{t('transactions.description')}</dt>
                         <dd>{transaccion.descripcion || '—'}</dd>
                     </dl>
                 </div>

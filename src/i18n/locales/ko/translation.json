@@ -1,0 +1,65 @@
+{
+    "name": "OP 지출 관리자",
+    "dashboard": "대시보드",
+    "accounts": "계정",
+    "aboutUs": "회사 소개",
+    "logout": "로그아웃",
+    "buttons": {
+        "planUpdate": "플랜 업그레이드",
+        "addTransaction": "생성",
+        "close": "닫기",
+        "cancel": "취소",
+        "save": "저장",
+        "delete": "삭제",
+        "edit": "편집",
+        "creating": "생성 중...",
+        "create": "생성",
+        "createTransaction": "거래 생성",
+        "deleteTransaction": "거래 삭제"
+    },
+    "graphs": {
+        "expensesByCategory": "카테고리별 지출",
+        "incomes": "수입",
+        "expenses": "지출",
+        "last7Income": "지난 7일간 수입",
+        "last7Expenses": "지난 7일간 지출"
+    },
+    "income": "수입",
+    "outcome": "지출",
+    "confirmations": {
+        "deleteTransaction": "${{ monto }} 거래를 삭제하시겠습니까? 이 작업은 취소할 수 없습니다.",
+        "createTransaction": "${{pendingData.monto}}의 {{pendingData.tipo}}를 생성하시겠습니까?",
+        "editTransaction": "${{monto}} 거래에 대한 변경 사항을 저장하시겠습니까?"
+    },
+    "transactions":{
+        "title": "거래",
+        "createTransaction":"새 거래 생성",
+        "editTransaction":"거래 편집",
+        "deleteTransaction":"거래 삭제",
+        "detailsTransaction":"거래 세부정보",
+        "account":"계정",
+        "type":"거래 유형",
+        "amount":"금액",
+        "category":"카테고리",
+        "description":"설명",
+        "date":"날짜"
+    },
+    "username": "사용자 이름",
+    "password": "비밀번호",
+    "login": {
+        "title": "계정에 로그인",
+        "welcome": "계정에 로그인하여 거래를 보고 관리하세요",
+        "register": "여기에서 등록하세요",
+        "submit": "로그인",
+        "forgotPassword": "로그인에 문제가 있습니까? 관리자에게 문의하세요"
+    },
+    "register": {
+        "title": "계정 생성",
+        "welcome": "앱 사용을 시작하려면 가입하세요",
+        "email": "이메일",
+        "confirmPassword": "비밀번호 확인",
+        "submit": "등록",
+        "backToLogin": "로그인으로 돌아가기",
+        "termsAndConditions": "등록하면 약관에 동의하는 것입니다."
+    }
+}
