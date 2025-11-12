@@ -8,7 +8,6 @@ import LineChartEgresos from './dashboard/LineChartEgresos';
 import PieChartEgresos from './dashboard/PieChartEgresos';
 import CrearTransaccionModal from './CrearTransaccionModal';
 import MejorarPlan from './MejorarPlan';
-import { guardarCuentas } from '../features/usuario.slice';
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
 import { guardarCuentas, guardarImagenPerfil } from '../features/usuario.slice';
@@ -16,7 +15,6 @@ import CambiarImagenPerfil from './CambiarImagenPerfil';
 import { useSelector } from 'react-redux';
 import { guardarSaldo1, guardarSaldo2 } from '../features/usuario.slice';
 import Saldo from './Saldo';
-import { set } from 'react-hook-form';
 
 const Dashboard = () => {
     const token = localStorage.getItem('token');
@@ -107,8 +105,6 @@ const Dashboard = () => {
                     <span className="btn-add-content">
                         <svg className="btn-add-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 11V5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6z" fill="currentColor"/></svg>
                         <span>{t('buttons.addTransaction')}</span>
-                        <svg className="btn-add-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 11V5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6z" fill="currentColor" /></svg>
-                        <span>Crear</span>
                     </span>
                 </button>
             </div>

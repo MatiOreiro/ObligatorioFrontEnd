@@ -13,7 +13,6 @@ import TransaccionEditForm from './TransaccionEditForm';
 
 const Transacciones = () => {
     const transacciones = useSelector(state => state.transacciones.lista);
-    console.log("transas", transacciones);
     
     const [selected, setSelected] = useState(null)
     const [editItem, setEditItem] = useState(null)

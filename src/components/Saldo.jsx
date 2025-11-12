@@ -5,7 +5,7 @@ const Saldo = ({ saldo, titulo, subtitulo }) => {
     return (
         <div>
             <h3>{titulo}</h3>
-            <p>Saldo: {saldo}</p>
+            <p>${saldo}</p>
         </div>
     )
 }

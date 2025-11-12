@@ -45,10 +45,8 @@ const Contenedor = () => {
                     <option value="ko">한국어</option>
                 </select>
                 <h1>{t('name')}</h1>
-                {loggeado && (<button className="btn-logout" title='cerrarSesion' onClick={handleLogout}>{t('logout')}</button>)}
-                <h1>Contenedor Component</h1>
                 {loggeado && <ImagenPerfil />}
-                {loggeado && (<button className="btn-logout" title='cerrarSesion' onClick={handleLogout}>Logout</button>)}
+                {loggeado && (<button className="btn-logout" title='cerrarSesion' onClick={handleLogout}>{t('logout')}</button>)}
             </div>
             <Outlet />
         </>
