@@ -8,7 +8,6 @@ import LineChartEgresos from './dashboard/LineChartEgresos';
 import PieChartEgresos from './dashboard/PieChartEgresos';
 import CrearTransaccionModal from './CrearTransaccionModal';
 import MejorarPlan from './MejorarPlan';
-import { guardarCuentas } from '../features/usuario.slice';
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
 import { guardarCuentas, guardarImagenPerfil } from '../features/usuario.slice';

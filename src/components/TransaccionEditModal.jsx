@@ -3,19 +3,13 @@ import { useDispatch } from 'react-redux';
 import api from '../data/api';
 import { guardarTransacciones } from '../features/transacciones.slice';
 import ConfirmDialog from './ConfirmDialog';
+import EditTransaccionForm from './EditTransaccionForm';
 import { useTranslation } from 'react-i18next';
 
 const TransaccionEditModal = ({ transaccion, onClose }) => {
     const dispatch = useDispatch();
     const { t } = useTranslation();
-    const [tipo, setTipo] = useState(transaccion?.tipo || 'ingreso');
-    const [monto, setMonto] = useState(transaccion?.monto ?? '');
-    const [categorias, setCategorias] = useState(() => {
-        if (Array.isArray(transaccion?.categorias)) return transaccion.categorias.map(c => c.nombre || c).join(', ');
-        if (transaccion?.categoria) return transaccion.categoria.nombre || String(transaccion.categoria);
-        return '';
-    });
-    const [descripcion, setDescripcion] = useState(transaccion?.descripcion || '');
+    const [pendingData, setPendingData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [confirming, setConfirming] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
@@ -32,12 +26,10 @@ const TransaccionEditModal = ({ transaccion, onClose }) => {
         return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = prev; }
     }, [onClose]);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!transaccion?._id) return;
-        // open confirmation dialog before performing the PUT
+    // handler called by the inner EditTransaccionForm when the form is submitted
+    const handleEditAttempt = (data) => {
+        setPendingData(data);
         setConfirming(true);
-        return;
     }
 
     // Helper: try to get server time from endpoints' Date header. Keep it minimal to avoid noisy 404s.
@@ -62,47 +54,25 @@ const TransaccionEditModal = ({ transaccion, onClose }) => {
     return (
         <>
         <div className="modal-overlay" role="presentation" onMouseDown={(e) => { if (e.target.classList.contains('modal-overlay')) onClose() }}>
-            <form className="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="edit-title" ref={dialogRef} onSubmit={handleSubmit}>
+            <div className="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="edit-title" ref={dialogRef}>
                 <header className="modal-header">
                     <h3 id="edit-title">{t('transactions.title')}</h3>
                     <div className="modal-actions">
-                        <button type="button" className="btn-ghost" onClick={onClose}>{t('buttons.cancel')}</button>
-                        <button type="submit" className="btn-primary" disabled={loading}>{loading ? t('buttons.saving') : t('buttons.save')}</button>
+                        <button type="button" className="btn-ghost" onClick={onClose}>{t('buttons.close')}</button>
                     </div>
                 </header>
 
                 <div className="modal-body">
                     {errorMessage && <div className="error" role="alert">{errorMessage}</div>}
-                    <div className="field">
-                        <label>{t('transactions.type')}</label>
-                        <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
-                            <option value="ingreso">{t('income')}</option>
-                            <option value="egreso">{t('outcome')}</option>
-                        </select>
-                    </div>
-
-                    <div className="field">
-                        <label>{t('transactions.amount')}</label>
-                        <input type="number" step="0.01" value={monto} onChange={(e) => setMonto(e.target.value)} required />
-                    </div>
-
-                    <div className="field">
-                        <label>{t('transactions.category')}</label>
-                        <input type="text" value={categorias} onChange={(e) => setCategorias(e.target.value)} placeholder="Alimentos, Hogar" />
-                    </div>
-
-                    <div className="field">
-                        <label>{t('transactions.description')}</label>
-                        <textarea value={descripcion} onChange={(e) => setDescripcion(e.target.value)} rows={3}></textarea>
-                    </div>
+                    <EditTransaccionForm initialValues={transaccion} onEdit={handleEditAttempt} />
                 </div>
-            </form>
+            </div>
         </div>
 
         {confirming && (
             <ConfirmDialog
                 title={t('transactions.editTransaction')}
-                message={t('confirmations.editTransaction', { monto })}
+                message={t('confirmations.editTransaction', { monto: pendingData?.monto })}
                 confirmLabel={t('buttons.save')}
                 cancelLabel={t('buttons.cancel')}
                 onConfirm={async () => {
@@ -129,8 +99,9 @@ const TransaccionEditModal = ({ transaccion, onClose }) => {
                         console.debug('[TransaccionEditModal] getServerTime error, fallback (client-1h) fechaToSend:', fechaToSend, err);
                     }
 
-                    const categoriasArr = categorias.split(',').map(s => s.trim()).filter(Boolean);
-                    const payload = { tipo: String(tipo).toLowerCase(), monto: Number(monto), descripcion, fecha: fechaToSend };
+                    const { tipo: pTipo, monto: pMonto, categoria: pCategoria, descripcion: pDescripcion } = pendingData || {};
+                    const categoriasArr = (pCategoria || '').split(',').map(s => s.trim()).filter(Boolean);
+                    const payload = { tipo: String(pTipo).toLowerCase(), monto: Number(pMonto), descripcion: pDescripcion, fecha: fechaToSend };
                     if (categoriasArr.length > 0) payload.categoria = categoriasArr[0];
 
                     try {

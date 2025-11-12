@@ -511,18 +511,34 @@ ul {
   top: 50%;
   transform: translateY(-50%);
 }
-.contenedor .btn-logout {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
 .contenedor .language-select {
   position: absolute;
   /* place it directly to the right of the burger toggle */
   left: 4rem; /* burger is at 1rem; this leaves a small gap */
   top: 50%;
   transform: translateY(-50%);
+}
+
+/* Right controls wrapper holds profile image and logout button together */
+.contenedor .right-controls {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+  z-index: 2;
+}
+.right-controls .imagen-perfil { margin: 0; }
+.imagen-perfil-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.06);
+  box-shadow: 0 6px 16px rgba(2,71,171,0.08);
+  display: block;
 }
 
 /* Ensure sidebar stays full height on mobile and doesn't scroll body */
@@ -536,6 +552,8 @@ ul {
   .contenedor .language-select { display:none; }
   .contenedor .btn-logout { right: 0.75rem; }
   .contenedor .burger-toggle { left: 0.5rem; }
+  /* hide profile image on very small screens to avoid crowding header */
+  .contenedor .imagen-perfil { display: none; }
 }
 
 
