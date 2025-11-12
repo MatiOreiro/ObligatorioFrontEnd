@@ -8,6 +8,7 @@ import Transaccion from './Transaccion';
 import TransaccionModal from './TransaccionModal';
 import TransaccionEditModal from './TransaccionEditModal';
 import ConfirmDialog from './ConfirmDialog';
+import { useTranslation } from 'react-i18next';
 import TransaccionEditForm from './TransaccionEditForm';
 
 const Transacciones = () => {
@@ -17,6 +18,7 @@ const Transacciones = () => {
     const [selected, setSelected] = useState(null)
     const [editItem, setEditItem] = useState(null)
     const dispatch = useDispatch();
+    const { t } = useTranslation();
 
     const handleDetails = (t) => {
         setSelected(t)
@@ -41,7 +43,7 @@ const Transacciones = () => {
 
     return (
         <div>
-            <h2>Transacciones</h2>
+            <h2>{t('transactions.title')}</h2>
             <ul>
                 {transacciones.map(transaccion => (
                     <li key={transaccion._id}>
@@ -67,10 +69,10 @@ const Transacciones = () => {
 
             {confirmDeleteItem && (
                 <ConfirmDialog
-                    title="Eliminar transacción"
-                    message={`¿Seguro que quieres eliminar la transacción de $${confirmDeleteItem.monto}? Esta acción no se puede deshacer.`}
-                    confirmLabel="Eliminar"
-                    cancelLabel="Cancelar"
+                    title={t('buttons.deleteTransaction')}
+                    message={t('confirmations.deleteTransaction', { monto: confirmDeleteItem.monto })}
+                    confirmLabel={t('buttons.delete')}
+                    cancelLabel={t('buttons.cancel')}
                     onConfirm={() => doDelete(confirmDeleteItem)}
                     onCancel={() => setConfirmDeleteItem(null)}
                 />

@@ -6,12 +6,15 @@ import { joiResolver } from '@hookform/resolvers/joi';
 import { loginSchema } from '../validators/auth.validators.js';
 import { useDispatch } from 'react-redux';
 import { guardarCuentas } from '../features/usuario.slice';
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
 
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
+
+    const { t } = useTranslation();
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: joiResolver(loginSchema)
@@ -55,30 +58,30 @@ const Login = () => {
                 <div className="brand">
                     <div className="logo-placeholder" aria-hidden="true"></div>
                     <div>
-                        <h2 id="login-title">Iniciar sesión</h2>
-                        <p className="lead">Accede a tu cuenta para ver y gestionar tus transacciones</p>
+                        <h2 id="login-title">{t('login.title')}</h2>
+                        <p className="lead">{t('login.welcome')}</p>
                     </div>
                 </div>
 
                 <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
                     <div className="field">
-                        <label htmlFor="loginUser">Usuario</label>
-                        <input id="loginUser" type="text" placeholder="Usuario" {...register("username")} />
+                        <label htmlFor="loginUser">{t('username')}</label>
+                        <input id="loginUser" type="text" placeholder="abcd1234" {...register("username")} />
                         {errors.username && <span className="error-message" role="alert">{errors.username.message}</span>}
                     </div>
 
                     <div className="field">
-                        <label htmlFor="loginPassword">Contraseña</label>
+                        <label htmlFor="loginPassword">{t('password')}</label>
                         <input id="loginPassword" type="password" placeholder="••••••••" {...register("password")} />
                         {errors.password && <span className="error-message" role="alert">{errors.password.message}</span>}
                     </div>
 
                     <div className="form-actions">
-                        <button className="btn-primary" type="submit" disabled={loading}>{loading ? 'Entrando…' : 'Iniciar sesión'}</button>
-                        <Link to="/register" className="secondary-link" aria-label="Crear una cuenta">Crear una cuenta</Link>
+                        <button className="btn-primary" type="submit" disabled={loading}>{loading ? t('login.submit') + '…' : t('login.submit')}</button>
+                        <Link to="/register" className="secondary-link" aria-label={t('login.register')}>{t('login.register')}</Link>
                     </div>
 
-                    <div className="login-note">¿Problemas para entrar? Contacta al administrador.</div>
+                    <div className="login-note">{t('login.forgotPassword')}</div>
                 </form>
             </div>
         </div>

@@ -10,6 +10,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 ChartJS.register(
     CategoryScale,
@@ -21,20 +22,17 @@ ChartJS.register(
     Legend
 );
 
-export const options = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'top',
-        },
-        title: {
-            display: true,
-            text: 'Ingresos en los últimos 7 días',
-        },
-    },
-};
+// options are built per-render so we can translate titles via i18n inside the component
 
 export default function App() {
+    const { t } = useTranslation();
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: { position: 'top' },
+            title: { display: true, text: t('graphs.last7Income') },
+        },
+    };
 // obtener las ultimas 7 transacciones del estado
     const transacciones = useSelector((state) => state.transacciones.lista);
     const ingresos = transacciones.filter(t => t.tipo === 'ingreso').slice(-7);
@@ -47,7 +45,7 @@ export default function App() {
         labels,
         datasets: [
             {
-                label: 'Ingresos',
+                label: t('graphs.incomes'),
                 data: ingresos.map(transaccion => transaccion.monto),
                 borderColor: 'rgb(40, 167, 69)', // verde para ingresos
                 backgroundColor: 'rgba(40, 167, 69, 0.5)',

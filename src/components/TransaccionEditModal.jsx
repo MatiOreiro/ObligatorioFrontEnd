@@ -3,9 +3,11 @@ import { useDispatch } from 'react-redux';
 import api from '../data/api';
 import { guardarTransacciones } from '../features/transacciones.slice';
 import ConfirmDialog from './ConfirmDialog';
+import { useTranslation } from 'react-i18next';
 
 const TransaccionEditModal = ({ transaccion, onClose }) => {
     const dispatch = useDispatch();
+    const { t } = useTranslation();
     const [tipo, setTipo] = useState(transaccion?.tipo || 'ingreso');
     const [monto, setMonto] = useState(transaccion?.monto ?? '');
     const [categorias, setCategorias] = useState(() => {
@@ -43,35 +45,35 @@ const TransaccionEditModal = ({ transaccion, onClose }) => {
         <div className="modal-overlay" role="presentation" onMouseDown={(e) => { if (e.target.classList.contains('modal-overlay')) onClose() }}>
             <form className="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="edit-title" ref={dialogRef} onSubmit={handleSubmit}>
                 <header className="modal-header">
-                    <h3 id="edit-title">Editar transacción</h3>
+                    <h3 id="edit-title">{t('transactions.title')}</h3>
                     <div className="modal-actions">
-                        <button type="button" className="btn-ghost" onClick={onClose}>Cancelar</button>
-                        <button type="submit" className="btn-primary" disabled={loading}>{loading ? 'Guardando…' : 'Guardar'}</button>
+                        <button type="button" className="btn-ghost" onClick={onClose}>{t('buttons.cancel')}</button>
+                        <button type="submit" className="btn-primary" disabled={loading}>{loading ? t('buttons.saving') : t('buttons.save')}</button>
                     </div>
                 </header>
 
                 <div className="modal-body">
                     {errorMessage && <div className="error" role="alert">{errorMessage}</div>}
                     <div className="field">
-                        <label>Tipo</label>
+                        <label>{t('transactions.type')}</label>
                         <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
-                            <option value="ingreso">Ingreso</option>
-                            <option value="egreso">Egreso</option>
+                            <option value="ingreso">{t('income')}</option>
+                            <option value="egreso">{t('outcome')}</option>
                         </select>
                     </div>
 
                     <div className="field">
-                        <label>Monto</label>
+                        <label>{t('transactions.amount')}</label>
                         <input type="number" step="0.01" value={monto} onChange={(e) => setMonto(e.target.value)} required />
                     </div>
 
                     <div className="field">
-                        <label>Categorías (separadas por coma)</label>
+                        <label>{t('transactions.category')}</label>
                         <input type="text" value={categorias} onChange={(e) => setCategorias(e.target.value)} placeholder="Alimentos, Hogar" />
                     </div>
 
                     <div className="field">
-                        <label>Descripción</label>
+                        <label>{t('transactions.description')}</label>
                         <textarea value={descripcion} onChange={(e) => setDescripcion(e.target.value)} rows={3}></textarea>
                     </div>
                 </div>
@@ -80,10 +82,10 @@ const TransaccionEditModal = ({ transaccion, onClose }) => {
 
         {confirming && (
             <ConfirmDialog
-                title="Confirmar edición"
-                message={`¿Deseas guardar los cambios en la transacción de $${monto}?`}
-                confirmLabel="Guardar"
-                cancelLabel="Cancelar"
+                title={t('transactions.editTransaction')}
+                message={t('confirmations.editTransaction', { monto })}
+                confirmLabel={t('buttons.save')}
+                cancelLabel={t('buttons.cancel')}
                 onConfirm={async () => {
                     setConfirming(false);
                     setLoading(true);

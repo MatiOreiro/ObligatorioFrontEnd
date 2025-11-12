@@ -4,11 +4,13 @@ import ConfirmDialog from './ConfirmDialog'
 import api from '../data/api'
 import { useDispatch, useSelector } from 'react-redux'
 import { agregarTransaccion } from '../features/transacciones.slice'
+import { useTranslation } from 'react-i18next'
 import { restarSaldo1, restarSaldo2, sumarSaldo1, sumarSaldo2 } from '../features/usuario.slice'
 
 
 const CrearTransaccionModal = ({ open, onClose }) => {
     const dispatch = useDispatch();
+    const { t } = useTranslation();
     const [pendingData, setPendingData] = useState(null);
     const [showConfirm, setShowConfirm] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -86,9 +88,9 @@ const CrearTransaccionModal = ({ open, onClose }) => {
         <div className="modal-overlay" role="presentation" onMouseDown={handleBackdrop}>
             <div className="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="crear-title">
                 <header className="modal-header">
-                    <h3 id="crear-title">Crear Transacción</h3>
+                    <h3 id="crear-title">{t('transactions.createTransaction')}</h3>
                     <div className="modal-actions">
-                        <button className="secondary-link" onClick={onClose} type="button">Cerrar</button>
+                        <button className="secondary-link" onClick={onClose} type="button">{t('buttons.close')}</button>
                     </div>
                 </header>
                 <div className="modal-body">
@@ -99,12 +101,12 @@ const CrearTransaccionModal = ({ open, onClose }) => {
 
             {showConfirm && (
                 <ConfirmDialog
-                    title="Confirmar creación"
-                    message={`¿Desea crear un ${pendingData.tipo} por $${pendingData.monto}?`}
+                    title={t('transactions.createTransaction')}
+                    message={t('confirmations.createTransaction', { pendingData })}
                     onConfirm={handleConfirm}
                     onCancel={handleCancelConfirm}
-                    confirmLabel={loading ? 'Creando...' : 'Crear'}
-                    cancelLabel="Cancelar"
+                    confirmLabel={loading ? t('buttons.creating') : t('buttons.create')}
+                    cancelLabel={t('buttons.cancel')}
                 />
             )}
         </div>

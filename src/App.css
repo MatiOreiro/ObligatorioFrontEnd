@@ -93,6 +93,7 @@ ul {
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap; /* allow children to wrap instead of overflowing */
+  margin-bottom: 0.6rem; /* add a bit of space below so descenders (g, y) are not cut */
 }
 
 /* allow flex children to shrink properly and not force horizontal scroll */
@@ -101,12 +102,21 @@ ul {
 /* ensure headings inside container don't overflow */
 .contenedor h1 {
   margin: 0;
-  font-size: 1.6rem; /* slightly larger to emphasize title without changing layout flow */
-  flex: 1 1 auto;
+  font-size: 1.6rem; /* slightly larger to emphasize title */
   font-weight: 700;
   letter-spacing: 0.4px;
   line-height: 1;
   text-shadow: 0 6px 18px rgba(2,71,171,0.12);
+  /* center visually regardless of flex children (burger, select, logout) */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* allow buttons around it to be clickable */
+  max-width: calc(100% - 220px); /* keep room for controls on both sides */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* make sure interactive buttons align but don't overflow */
@@ -476,10 +486,56 @@ ul {
 .sidebar-nav .secondary-link { display:inline-block; padding:0.6rem 0.75rem; border-radius:10px; background: transparent; border: none; color:var(--primary-light) }
 .sidebar-nav a:hover { background: rgba(255,255,255,0.02); }
 
+/* Language select styling for i18n selector in Contenedor */
+.language-select {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  color: var(--text);
+  padding: 0.45rem 0.6rem;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  font-size: 0.95rem;
+}
+.language-select:focus { box-shadow: var(--ring); border-color: var(--primary-600); }
+
+/* Small tweak: ensure control buttons remain above centered title */
+.contenedor .burger-toggle, .contenedor .btn-logout, .contenedor .language-select { z-index: 2; }
+
+/* place burger on the left and controls on the right so the centered title never gets overlapped */
+.contenedor .burger-toggle {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.contenedor .btn-logout {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.contenedor .language-select {
+  position: absolute;
+  /* place it directly to the right of the burger toggle */
+  left: 4rem; /* burger is at 1rem; this leaves a small gap */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 /* Ensure sidebar stays full height on mobile and doesn't scroll body */
 @media (max-width:640px) {
   .burger-toggle { left: 0.75rem; top: 0.75rem; }
   .sidebar { width: 88vw; }
+}
+
+@media (max-width:520px) {
+  /* on small screens, collapse controls to avoid overlap with title */
+  .contenedor .language-select { display:none; }
+  .contenedor .btn-logout { right: 0.75rem; }
+  .contenedor .burger-toggle { left: 0.5rem; }
 }
 
 

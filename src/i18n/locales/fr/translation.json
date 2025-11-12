@@ -1,0 +1,65 @@
+{
+    "name": "Gestionnaire de dépenses OP",
+    "dashboard": "Tableau de bord",
+    "accounts": "Comptes",
+    "aboutUs": "À propos de nous",
+    "logout": "Se déconnecter",
+    "buttons": {
+        "planUpdate": "Mettez à jour votre plan",
+        "addTransaction": "Créer",
+        "close": "Fermer",
+        "cancel": "Annuler",
+        "save": "Enregistrer",
+        "delete": "Supprimer",
+        "edit": "Modifier",
+        "creating": "Création...",
+        "create": "Créer",
+        "createTransaction": "Créer une transaction",
+        "deleteTransaction": "Supprimer la transaction"
+    },
+    "graphs": {
+        "expensesByCategory": "Dépenses par catégorie",
+        "incomes": "Revenus",
+        "expenses": "Dépenses",
+        "last7Income": "Revenus des 7 derniers jours",
+        "last7Expenses": "Dépenses des 7 derniers jours"
+    },
+    "income": "Revenu",
+    "outcome": "Dépense",
+    "confirmations": {
+        "deleteTransaction": "Êtes-vous sûr de vouloir supprimer la transaction de ${{ monto }} ? Cette action est irréversible.",
+        "createTransaction": "Voulez-vous créer un(e) {{pendingData.tipo}} pour ${{pendingData.monto}} ?",
+        "editTransaction": "Voulez-vous enregistrer les modifications de la transaction de ${{monto}} ?"
+    },
+    "transactions":{
+        "title": "Transactions",
+        "createTransaction":"Créer une nouvelle transaction",
+        "editTransaction":"Modifier la transaction",
+        "deleteTransaction":"Supprimer la transaction",
+        "detailsTransaction":"Détails de la transaction",
+        "account":"Compte",
+        "type":"Type de transaction",
+        "amount":"Montant",
+        "category":"Catégorie",
+        "description":"Description",
+        "date":"Date"
+    },
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "login": {
+        "title": "Connectez-vous à votre compte",
+        "welcome": "Accédez à votre compte pour voir et gérer vos transactions",
+        "register": "Inscrivez-vous ici",
+        "submit": "Se connecter",
+        "forgotPassword": "Des difficultés à vous connecter ? Contactez l'administrateur"
+    },
+    "register": {
+        "title": "Créer un compte",
+        "welcome": "Inscrivez-vous pour commencer à utiliser l'application",
+        "email": "E-mail",
+        "confirmPassword": "Confirmer le mot de passe",
+        "submit": "S'inscrire",
+        "backToLogin": "Retour à la connexion",
+        "termsAndConditions": "En vous inscrivant, vous acceptez les termes et conditions."
+    }
+}

@@ -1,24 +1,14 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const options = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'top',
-        },
-        title: {
-            display: true,
-            text: 'Egresos por Categoría',
-        },
-    },
-};
+// options will be created inside the component to allow translations via i18n
 
 export default function App() {
-
+    const { t } = useTranslation();
     const transacciones = useSelector((state) => state.transacciones.lista);
     const egresos = transacciones.filter(t => t.tipo === 'egreso');
     const totalesPorCategoria = egresos.reduce((acc, t) => {
@@ -30,11 +20,19 @@ export default function App() {
         return acc;
     }, {});
 
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: { position: 'top' },
+            title: { display: true, text: t('graphs.expensesByCategory') },
+        },
+    };
+
     const data = {
         labels: Object.keys(totalesPorCategoria),
         datasets: [
             {
-                label: '# of Votes',
+                label: t('outcome'),
                 data: [...Object.values(totalesPorCategoria)],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',

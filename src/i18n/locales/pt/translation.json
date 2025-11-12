@@ -1,0 +1,65 @@
+{
+    "name": "Gestor de despesas OP",
+    "dashboard": "Painel de Controle",
+    "accounts": "Contas",
+    "aboutUs": "Sobre nós",
+    "logout": "Sair",
+    "buttons": {
+        "planUpdate": "Atualize seu plano",
+        "addTransaction": "Criar",
+        "close": "Fechar",
+        "cancel": "Cancelar",
+        "save": "Salvar",
+        "delete": "Excluir",
+        "edit": "Editar",
+        "creating": "Criando...",
+        "create": "Criar",
+        "createTransaction": "Criar Transação",
+        "deleteTransaction": "Excluir Transação"
+    },
+    "graphs": {
+        "expensesByCategory": "Despesas por categoria",
+        "incomes": "Receitas",
+        "expenses": "Despesas",
+        "last7Income": "Receitas nos últimos 7 dias",
+        "last7Expenses": "Despesas nos últimos 7 dias"
+    },
+    "income": "Receita",
+    "outcome": "Despesa",
+    "confirmations": {
+        "deleteTransaction": "Tem certeza de que deseja excluir a transação de ${{ monto }}? Esta ação não pode ser desfeita.",
+        "createTransaction": "Você quer criar um(a) {{pendingData.tipo}} por ${{pendingData.monto}}?",
+        "editTransaction": "Você quer salvar as alterações na transação de ${{monto}}?"
+    },
+    "transactions":{
+        "title": "Transações",
+        "createTransaction":"Criar transação",
+        "editTransaction":"Editar transação",
+        "deleteTransaction":"Excluir transação",
+        "detailsTransaction":"Detalhes da transação",
+        "account":"Conta",
+        "type":"Tipo de transação",
+        "amount":"Valor",
+        "category":"Categoria",
+        "description":"Descrição",
+        "date":"Data"
+    },
+    "username": "Nome de usuário",
+    "password": "Senha",
+    "login": {
+        "title": "Faça login na sua conta",
+        "welcome": "Acesse sua conta para ver e gerenciar suas transações",
+        "register": "Registre-se aqui",
+        "submit": "Entrar",
+        "forgotPassword": "Problemas para entrar? Contate o administrador"
+    },
+    "register": {
+        "title": "Criar conta",
+        "welcome": "Inscreva-se para começar a usar o aplicativo",
+        "email": "Email",
+        "confirmPassword": "Confirmar senha",
+        "submit": "Registrar",
+        "backToLogin": "Voltar ao login",
+        "termsAndConditions": "Ao se registrar, você aceita os termos e condições."
+    }
+}
