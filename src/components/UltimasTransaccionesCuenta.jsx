@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux';
-import { guardarTransacciones } from '../features/transacciones.slice';
+import { eliminarTransaccion } from '../features/transacciones.slice';
 import { useSelector } from 'react-redux';
 import api from '../data/api';
 import Transaccion from './Transaccion';
@@ -10,10 +10,21 @@ import TransaccionEditModal from './TransaccionEditModal';
 import ConfirmDialog from './ConfirmDialog';
 import { useTranslation } from 'react-i18next';
 import TransaccionEditForm from './TransaccionEditForm';
+import { sumarSaldo1, restarSaldo1, sumarSaldo2, restarSaldo2 } from '../features/usuario.slice';
 
 const UltimasTransaccionesCuenta = ({ cuentaId }) => {
-    const transacciones = useSelector(state => state.transacciones.lista).filter(t => t.cuentaId === cuentaId).slice(0, 3);
-    
+    const transacciones = useSelector(state => state.transacciones.lista);
+    const cuentas = useSelector(state => state.usuario.cuentas);
+    const [transaccionesCuenta, setTransaccionesCuenta] = useState([]);
+    const [cuenta, setCuenta] = useState(cuentaId)
+
+    useEffect(() => {
+        let filtered = transacciones.filter(t => t.cuentaId === cuenta).slice(-3).reverse();
+        setTransaccionesCuenta(filtered);
+        console.log(filtered);
+        
+    }, [transacciones, cuenta]);
+
     const [selected, setSelected] = useState(null)
     const [editItem, setEditItem] = useState(null)
     const dispatch = useDispatch();
@@ -34,8 +45,24 @@ const UltimasTransaccionesCuenta = ({ cuentaId }) => {
 
     const doDelete = (t) => {
         api.delete(`/transaccion/eliminar/${t._id}`)
-            .then(() => api.get('/transaccion/filtrar'))
-            .then(response => dispatch(guardarTransacciones(response.data.transacciones)))
+            .then(response => {
+                dispatch(eliminarTransaccion(t._id));
+                console.log(t);
+
+                if (t.cuentaId === cuentas[0]._id) {
+                    if (t.tipo === 'ingreso') {
+                        dispatch(restarSaldo1(Number(t.monto)));
+                    } else {
+                        dispatch(sumarSaldo1(Number(t.monto)));
+                    }
+                } else if (t.cuentaId === cuentas[1]._id) {
+                    if (t.tipo === 'ingreso') {
+                        dispatch(restarSaldo2(Number(t.monto)));
+                    } else {
+                        dispatch(sumarSaldo2(Number(t.monto)));
+                    }
+                }
+            })
             .catch(err => console.error('Error al eliminar', err))
             .finally(() => setConfirmDeleteItem(null))
     }
@@ -44,7 +71,7 @@ const UltimasTransaccionesCuenta = ({ cuentaId }) => {
         <div>
             <h2>{t('transactions.title')}</h2>
             <ul>
-                {transacciones.map(transaccion => (
+                {transaccionesCuenta.map(transaccion => (
                     <li key={transaccion._id}>
                         <Transaccion transaccion={transaccion} onDetails={handleDetails} onEdit={handleEdit} onDelete={handleDelete} />
                     </li>

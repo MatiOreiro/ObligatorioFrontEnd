@@ -39,7 +39,7 @@
     "detailsTransaction": "Detalles de la transacción",
     "account": "Cuenta",
     "type": "Tipo de transacción",
-    "ammount": "Monto",
+    "amount": "Monto",
     "category": "Categoría",
     "description": "Descripción",
     "date": "Fecha"

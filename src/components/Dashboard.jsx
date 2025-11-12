@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 import { guardarSaldo1, guardarSaldo2 } from '../features/usuario.slice';
 import Saldo from './Saldo';
 import UltimasTransaccionesCuenta from './UltimasTransaccionesCuenta';
+import ConsumoPlan from './ConsumoPlan';
 
 const Dashboard = () => {
     const token = localStorage.getItem('token');
@@ -115,6 +116,7 @@ const Dashboard = () => {
             <CambiarImagenPerfil />
             <CrearTransaccionModal open={openCreate} onClose={closeCrear} />
             <MejorarPlan />
+            <ConsumoPlan />
             {saldosCargados && (
                 <>
                     <Saldo titulo={cuentas[0].nombre} saldo={saldoCuenta1} />

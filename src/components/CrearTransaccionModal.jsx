@@ -55,7 +55,7 @@ const CrearTransaccionModal = ({ open, onClose }) => {
 
         api.post('/transaccion/crear', payload).then(response => {
             // create a local representation (server may return different shape)
-            const transaccion = { _id: response.data.transaccion._id, tipo: payload.tipo, monto: payload.monto, descripcion: payload.descripcion, categoria: { nombre: payload.categoria }, cuenta: payload.cuenta, fecha: new Date().toISOString() };
+            const transaccion = { _id: response.data.transaccion._id, tipo: payload.tipo, monto: payload.monto, descripcion: payload.descripcion, categoria: { nombre: payload.categoria }, cuentaId: payload.cuenta, fecha: new Date().toISOString() };
             dispatch(agregarTransaccion(transaccion));
             console.log(payload.cuenta);
             
