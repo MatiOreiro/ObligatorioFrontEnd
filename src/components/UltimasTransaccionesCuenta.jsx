@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { useDispatch } from 'react-redux';
 import { eliminarTransaccion } from '../features/transacciones.slice';
 import { useSelector } from 'react-redux';
@@ -11,9 +12,18 @@ import { useTranslation } from 'react-i18next';
 import TransaccionEditForm from './TransaccionEditForm';
 import { sumarSaldo1, restarSaldo1, sumarSaldo2, restarSaldo2 } from '../features/usuario.slice';
 
-const Transacciones = () => {
+const UltimasTransaccionesCuenta = ({ cuentaId }) => {
     const transacciones = useSelector(state => state.transacciones.lista);
     const cuentas = useSelector(state => state.usuario.cuentas);
+    const [transaccionesCuenta, setTransaccionesCuenta] = useState([]);
+    const [cuenta, setCuenta] = useState(cuentaId)
+
+    useEffect(() => {
+        let filtered = transacciones.filter(t => t.cuentaId === cuenta).slice(-3).reverse();
+        setTransaccionesCuenta(filtered);
+        console.log(filtered);
+        
+    }, [transacciones, cuenta]);
 
     const [selected, setSelected] = useState(null)
     const [editItem, setEditItem] = useState(null)
@@ -61,7 +71,7 @@ const Transacciones = () => {
         <div>
             <h2>{t('transactions.title')}</h2>
             <ul>
-                {transacciones.map(transaccion => (
+                {transaccionesCuenta.map(transaccion => (
                     <li key={transaccion._id}>
                         <Transaccion transaccion={transaccion} onDetails={handleDetails} onEdit={handleEdit} onDelete={handleDelete} />
                     </li>
@@ -73,9 +83,13 @@ const Transacciones = () => {
             )}
 
             {editItem && (
-                <TransaccionEditModal
-                    transaccion={editItem}
-                    onClose={() => setEditItem(null)}
+                <TransaccionEditForm
+                    _id={editItem._id}
+                    tipo={editItem.tipo}
+                    monto={editItem.monto}
+                    categoria={editItem.categoria.nombre}
+                    descripcion={editItem.descripcion}
+                    handleEdit={setEditItem}
                 />
             )}
 
@@ -93,4 +107,4 @@ const Transacciones = () => {
     )
 }
 
-export default Transacciones
+export default UltimasTransaccionesCuenta

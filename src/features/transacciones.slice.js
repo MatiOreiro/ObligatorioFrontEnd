@@ -16,7 +16,7 @@ const transaccionesSlice = createSlice({
             state.lista.push(action.payload);
         },
         eliminarTransaccion: (state, action) => {
-            state.lista = state.lista.filter(transaccion => transaccion.id !== action.payload.id);
+            state.lista = state.lista.filter(transaccion => transaccion._id !== action.payload);
         },
         limpiarTransacciones: (state) => {
             state.lista = [];

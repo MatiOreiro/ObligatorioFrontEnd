@@ -1,10 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    cuentas: [],
-    imagenPerfil: 'https://res.cloudinary.com/douqrno9i/image/upload/v1762174755/samples/man-portrait.jpg',
-    saldoCuenta1: 0,
-    saldoCuenta2: 0,
+  cuentas: [],
+  imagenPerfil: 'https://res.cloudinary.com/douqrno9i/image/upload/v1762174755/samples/man-portrait.jpg',
+  saldoCuenta1: 0,
+  saldoCuenta2: 0,
+  plan: {
+    tipo: 'plus',
+    limiteTransacciones: 10,
+  }
 };
 
 const usuarioSlice = createSlice({
@@ -41,8 +45,25 @@ const usuarioSlice = createSlice({
     sumarSaldo2: (state, action) => {
       state.saldoCuenta2 += action.payload;
     },
+    mejorarPlan: (state) => {
+      state.plan = {
+        tipo: 'premium',
+      };
+    },
   },
 });
 
-export const { guardarCuentas, limpiarCuentas, guardarImagenPerfil, limpiarImagenPerfil, guardarSaldo1, guardarSaldo2, restarSaldo1, sumarSaldo1, restarSaldo2, sumarSaldo2 } = usuarioSlice.actions;
+export const {
+  guardarCuentas,
+  limpiarCuentas, 
+  guardarImagenPerfil, 
+  limpiarImagenPerfil, 
+  guardarSaldo1, 
+  guardarSaldo2, 
+  restarSaldo1, 
+  sumarSaldo1, 
+  restarSaldo2, 
+  sumarSaldo2, 
+  mejorarPlan
+} = usuarioSlice.actions;
 export default usuarioSlice.reducer;
