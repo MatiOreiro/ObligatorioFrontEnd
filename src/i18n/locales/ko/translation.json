@@ -15,7 +15,8 @@
         "creating": "생성 중...",
         "create": "생성",
         "createTransaction": "거래 생성",
-        "deleteTransaction": "거래 삭제"
+        "deleteTransaction": "거래 삭제",
+        "applyFilters": "필터 적용"
     },
     "graphs": {
         "expensesByCategory": "카테고리별 지출",
@@ -42,7 +43,13 @@
         "amount":"금액",
         "category":"카테고리",
         "description":"설명",
-        "date":"날짜"
+        "date":"날짜",
+        "filterByAccount":"계정별 필터",
+        "filterByType":"유형별 필터",
+        "filterByCategory":"카테고리별 필터",
+        "allAccounts":"모든 계정",
+        "allTypes":"모든 유형",
+        "categoryPlaceholder":"카테고리를 입력하세요"
     },
     "username": "사용자 이름",
     "password": "비밀번호",

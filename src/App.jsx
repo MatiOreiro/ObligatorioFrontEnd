@@ -10,6 +10,7 @@ import NoEncontrado from './components/NoEncontrado'
 import Contenedor from './components/Contenedor'
 import ProtectedRoute from './components/ProtectedRoute'
 import Dashboard from './components/Dashboard'
+import Transacciones from './components/Transacciones'
 
 function App() {
 
@@ -22,6 +23,9 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/dashboard' element={<ProtectedRoute />} >
             <Route path='/dashboard' element={<Dashboard />} />
+          </Route>
+          <Route path='/transacciones' element={<ProtectedRoute />} >
+            <Route path='/transacciones' element={<Transacciones />} />
           </Route>
           <Route path='*' element={<NoEncontrado />} />
         </Route>

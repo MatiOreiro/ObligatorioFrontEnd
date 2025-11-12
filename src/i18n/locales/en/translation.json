@@ -15,7 +15,8 @@
     "creating": "Creating...",
     "create": "Create",
     "createTransaction": "Create Transaction",
-    "deleteTransaction": "Delete Transaction"
+    "deleteTransaction": "Delete Transaction",
+    "applyFilters": "Apply Filters"
   },
   "graphs": {
     "expensesByCategory": "Expenses by Category",
@@ -42,7 +43,13 @@
     "amount": "Amount",
     "category": "Category",
     "description": "Description",
-    "date": "Date"
+    "date": "Date",
+    "filterByAccount": "Filter by Account",
+    "filterByType": "Filter by Type",
+    "filterByCategory": "Filter by Category",
+    "allAccounts": "All Accounts",
+    "allTypes": "All Types",
+    "categoryPlaceholder": "Enter a category"
   },
   "username": "Username",
   "password": "Password",
