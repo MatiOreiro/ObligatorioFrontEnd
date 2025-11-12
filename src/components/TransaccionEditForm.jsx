@@ -16,59 +16,11 @@ const TransaccionEditForm = ({ _id, tipo, monto, categoria, descripcion, handleE
 
     const { t } = useTranslation();
 
-    const cuentas = useSelector(state => state.usuario.cuentas);
-
     const dispatch = useDispatch();
 
     const onSubmit = (data) => {
-        api.put(`/transaccion/modificar/${_id}`, data).then(response => {
-            console.log('Transacción editada', response.data);
-            response.data.transaccion.categoria = { nombre: data.categoria };
-            dispatch(actualizarTransaccion(response.data.transaccion));                  
-            if (response.data.transaccion.cuentaId === cuentas[0]._id) {
-                if (tipo === response.data.transaccion.tipo) {
-                    if (tipo === 'ingreso') {
-                        dispatch(restarSaldo1(Number(monto)));
-                        dispatch(sumarSaldo1(Number(response.data.transaccion.monto)));
-                    } else {
-                        dispatch(sumarSaldo1(Number(monto)));
-                        dispatch(restarSaldo1(Number(response.data.transaccion.monto)));
-                    }
-                } else {
-                    if (response.data.transaccion.tipo === 'ingreso') {
-                        dispatch(sumarSaldo1(Number(response.data.transaccion.monto)));
-                        dispatch(sumarSaldo1(Number(monto)));
-                    } else {
-                        dispatch(restarSaldo1(Number(response.data.transaccion.monto)));
-                        dispatch(restarSaldo1(Number(monto)));
-                    }
-                }
-            } else if (response.data.transaccion.cuentaId === cuentas[1]._id) {
-                if (tipo === response.data.transaccion.tipo) {
-                    if (tipo === 'ingreso') {
-                        dispatch(restarSaldo2(Number(monto)));
-                        dispatch(sumarSaldo2(Number(response.data.transaccion.monto)));
-                    } else {
-                        dispatch(sumarSaldo2(Number(monto)));
-                        dispatch(restarSaldo2(Number(response.data.transaccion.monto)));
-                    }
-                } else {
-                    if (response.data.transaccion.tipo === 'ingreso') {
-                        dispatch(sumarSaldo2(Number(response.data.transaccion.monto)));
-                        dispatch(sumarSaldo2(Number(monto)));
-                    } else {
-                        dispatch(restarSaldo2(Number(response.data.transaccion.monto)));
-                        dispatch(restarSaldo2(Number(monto)));
-                    }
-                }
-            }
-            toast.success(t('toasts.editSuccess'));
-            handleEdit(null);
-        }).catch(error => {
-            console.error('Error al editar transacción', error);
-            toast.error(t('toasts.editError'));
-        });
-}
+        handleEdit(data);
+    }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

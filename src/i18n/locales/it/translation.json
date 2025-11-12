@@ -17,7 +17,8 @@
     "createTransaction": "Crea transazione",
     "deleteTransaction": "Elimina transazione",
     "uploadImage": "Carica immagine",
-    "uploading": "Caricamento..."
+    "uploading": "Caricamento...",
+    "applyFilters": "Applica filtri"
   },
   "graphs": {
     "expensesByCategory": "Spese per categoria",
@@ -44,7 +45,13 @@
     "amount": "Importo",
     "category": "Categoria",
     "description": "Descrizione",
-    "date": "Data"
+    "date": "Data",
+    "filterByAccount":"Filtra per conto",
+        "filterByType":"Filtra per tipo",
+        "filterByCategory":"Filtra per categoria",
+        "allAccounts":"Tutti i conti",
+        "allTypes":"Tutti i tipi",
+        "categoryPlaceholder":"Inserisci una categoria"
   },
   "username": "Nome utente",
   "password": "Password",

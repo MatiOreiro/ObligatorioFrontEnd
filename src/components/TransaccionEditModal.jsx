@@ -1,115 +1,137 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux';
-import api from '../data/api';
-import { guardarTransacciones } from '../features/transacciones.slice';
-import ConfirmDialog from './ConfirmDialog';
-import EditTransaccionForm from './EditTransaccionForm';
-import { useTranslation } from 'react-i18next';
-import { ToastContainer, toast } from 'react-toastify';
+import React, { useEffect, useState } from 'react'
+import ConfirmDialog from './ConfirmDialog'
+import api from '../data/api'
+import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+import { restarSaldo1, restarSaldo2, sumarSaldo1, sumarSaldo2 } from '../features/usuario.slice'
+import TransaccionEditForm from './TransaccionEditForm'
+import { actualizarTransaccion } from '../features/transacciones.slice'
+import { ToastContainer, toast } from 'react-toastify'
 
-const TransaccionEditModal = ({ transaccion, onClose }) => {
+
+const TransaccionEditModal = ({ _id, tipo, monto, categoria, descripcion, handleEdit, open, onClose }) => {
     const dispatch = useDispatch();
     const { t } = useTranslation();
     const [pendingData, setPendingData] = useState(null);
+    const [showConfirm, setShowConfirm] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [confirming, setConfirming] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
+    const [error, setError] = useState(null);
 
-    const dialogRef = useRef(null);
+    const cuentas = useSelector(state => state.usuario.cuentas);
 
     useEffect(() => {
-        const prev = document.body.style.overflow;
-        document.body.style.overflow = 'hidden';
-        const btn = dialogRef.current?.querySelector('button');
-        if (btn) btn.focus();
-        const onKey = (e) => { if (e.key === 'Escape') onClose(); }
-        window.addEventListener('keydown', onKey);
-        return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = prev; }
-    }, [onClose]);
+        const onKey = (e) => {
+            if (e.key === 'Escape') onClose();
+        }
+        if (open) window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, [open, onClose]);
 
-    // handler called by the inner EditTransaccionForm when the form is submitted
-    const handleEditAttempt = (data) => {
+    if (!open) return null;
+
+    const handleBackdrop = (e) => {
+        // close only when clicking on overlay
+        if (e.target.classList && e.target.classList.contains('modal-overlay')) {
+            onClose();
+        }
+    }
+
+    const handleCreateAttempt = (data) => {
         setPendingData(data);
-        setConfirming(true);
+        setShowConfirm(true);
+    }
+
+    const handleConfirm = () => {
+        if (!pendingData) return;
+        setShowConfirm(false);
+        setLoading(true);
+        setError(null);
+        const payload = {
+            tipo: pendingData.tipo,
+            monto: Number(pendingData.monto),
+            descripcion: pendingData.descripcion,
+            categoria: pendingData.categoria,
+            cuenta: pendingData.cuenta
+        };
+
+        api.put(`/transaccion/modificar/${_id}`, payload).then(response => {
+            console.log('Transacción editada', response.data);
+            response.data.transaccion.categoria = { nombre: payload.categoria };
+            dispatch(actualizarTransaccion(response.data.transaccion));                  
+            if (response.data.transaccion.cuentaId === cuentas[0]._id) {
+                if (tipo === response.data.transaccion.tipo) {
+                    if (tipo === 'ingreso') {
+                        dispatch(restarSaldo1(Number(monto)));
+                        dispatch(sumarSaldo1(Number(response.data.transaccion.monto)));
+                    } else {
+                        dispatch(sumarSaldo1(Number(monto)));
+                        dispatch(restarSaldo1(Number(response.data.transaccion.monto)));
+                    }
+                } else {
+                    if (response.data.transaccion.tipo === 'ingreso') {
+                        dispatch(sumarSaldo1(Number(response.data.transaccion.monto)));
+                        dispatch(sumarSaldo1(Number(monto)));
+                    } else {
+                        dispatch(restarSaldo1(Number(response.data.transaccion.monto)));
+                        dispatch(restarSaldo1(Number(monto)));
+                    }
+                }
+            } else if (response.data.transaccion.cuentaId === cuentas[1]._id) {
+                if (tipo === response.data.transaccion.tipo) {
+                    if (tipo === 'ingreso') {
+                        dispatch(restarSaldo2(Number(monto)));
+                        dispatch(sumarSaldo2(Number(response.data.transaccion.monto)));
+                    } else {
+                        dispatch(sumarSaldo2(Number(monto)));
+                        dispatch(restarSaldo2(Number(response.data.transaccion.monto)));
+                    }
+                } else {
+                    if (response.data.transaccion.tipo === 'ingreso') {
+                        dispatch(sumarSaldo2(Number(response.data.transaccion.monto)));
+                        dispatch(sumarSaldo2(Number(monto)));
+                    } else {
+                        dispatch(restarSaldo2(Number(response.data.transaccion.monto)));
+                        dispatch(restarSaldo2(Number(monto)));
+                    }
+                }
+            }
+            handleEdit(null);
+        }).catch(error => {
+            console.error('Error al editar transacción', error);
+        }).finally(() => setLoading(false));
+    }
+
+    const handleCancelConfirm = () => {
+        setShowConfirm(false);
+        setPendingData(null);
     }
 
     return (
-        <>
-        <div className="modal-overlay" role="presentation" onMouseDown={(e) => { if (e.target.classList.contains('modal-overlay')) onClose() }}>
-            <div className="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="edit-title" ref={dialogRef}>
+        <div className="modal-overlay" role="presentation" onMouseDown={handleBackdrop}>
+            <div className="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="crear-title">
                 <header className="modal-header">
-                    <h3 id="edit-title">{t('transactions.title')}</h3>
+                    <h3 id="crear-title">{t('transactions.createTransaction')}</h3>
                     <div className="modal-actions">
-                        <button type="button" className="btn-ghost" onClick={onClose}>{t('buttons.close')}</button>
+                        <button className="secondary-link" onClick={onClose} type="button">{t('buttons.close')}</button>
                     </div>
                 </header>
-
                 <div className="modal-body">
-                    {errorMessage && <div className="error" role="alert">{errorMessage}</div>}
-                    <EditTransaccionForm initialValues={transaccion} onEdit={handleEditAttempt} />
+                    {error && <div className="error" role="alert">{error}</div>}
+                    <TransaccionEditForm _id={_id} tipo={tipo} monto={monto} categoria={categoria} descripcion={descripcion} handleEdit={handleCreateAttempt} />
                 </div>
             </div>
+
+            {showConfirm && (
+                <ConfirmDialog
+                    title={t('transactions.createTransaction')}
+                    message={t('confirmations.createTransaction', { pendingData })}
+                    onConfirm={handleConfirm}
+                    onCancel={handleCancelConfirm}
+                    confirmLabel={loading ? t('buttons.creating') : t('buttons.create')}
+                    cancelLabel={t('buttons.cancel')}
+                />
+            )}
         </div>
-
-        {confirming && (
-            <ConfirmDialog
-                title={t('transactions.editTransaction')}
-                message={t('confirmations.editTransaction', { monto: pendingData?.monto })}
-                confirmLabel={t('buttons.save')}
-                cancelLabel={t('buttons.cancel')}
-                onConfirm={async () => {
-                    setConfirming(false);
-                    setLoading(true);
-                    // perform the same submit flow as before: compute fecha and send payload
-                    const token = localStorage.getItem('token');
-                    // recompute fechaToSend synchronizing with server as before
-                    let fechaToSend;
-                    try {
-                        const serverTime = await getServerTime(token);
-                        if (serverTime && !Number.isNaN(serverTime.getTime())) {
-                            // Use a very small safety margin (2 seconds) when we have authoritative server time
-                            const candidate = new Date(serverTime.getTime() - 2 * 1000);
-                            fechaToSend = candidate.toISOString();
-                            console.debug('[TransaccionEditModal] serverTime:', serverTime.toISOString(), 'fechaToSend:', fechaToSend);
-                        } else {
-                            // fallback: client time minus 1 hour (use larger conservative margin when server time is unavailable)
-                            fechaToSend = new Date(Date.now() - 3600 * 1000).toISOString();
-                            console.debug('[TransaccionEditModal] no serverTime, fallback (client-1h) fechaToSend:', fechaToSend);
-                        }
-                    } catch (err) {
-                        fechaToSend = new Date(Date.now() - 3600 * 1000).toISOString();
-                        console.debug('[TransaccionEditModal] getServerTime error, fallback (client-1h) fechaToSend:', fechaToSend, err);
-                    }
-
-                    const { tipo: pTipo, monto: pMonto, categoria: pCategoria, descripcion: pDescripcion } = pendingData || {};
-                    const categoriasArr = (pCategoria || '').split(',').map(s => s.trim()).filter(Boolean);
-                    const payload = { tipo: String(pTipo).toLowerCase(), monto: Number(pMonto), descripcion: pDescripcion, fecha: fechaToSend };
-                    if (categoriasArr.length > 0) payload.categoria = categoriasArr[0];
-
-                    try {
-                        await api.put(`/transaccion/modificar/${transaccion._id}`, payload, { headers: { Authorization: `Bearer ${token}` } });
-                        const response = await api.get('/transaccion/filtrar', { headers: { Authorization: `Bearer ${token}` } });
-                        dispatch(guardarTransacciones(response.data.transacciones));
-                                    toast.success(t('toasts.editSuccess'));
-                        onClose();
-                    } catch (err) {
-                        console.error('Error al editar transacción (confirm flow)', err);
-                        // intentar detectar si el backend devolvió la fecha límite en el mensaje y reintentar inmediatamente
-                        const respData = err?.response?.data;
-                        const text = typeof respData === 'string' ? respData : JSON.stringify(respData || {});
-                        const isoMatch = text.match(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/);
-                        // No automatic retry: show server message so the user can re-attempt or adjust.
-                        const serverMsg = err?.response?.data?.message || err?.response?.data || err.message;
-                        toast.error(t('toasts.editError'));
-                        setErrorMessage(typeof serverMsg === 'string' ? serverMsg : JSON.stringify(serverMsg));
-                    } finally {
-                        setLoading(false);
-                    }
-                }}
-                onCancel={() => setConfirming(false)}
-            />
-        )}
-        </>
     )
 }
 

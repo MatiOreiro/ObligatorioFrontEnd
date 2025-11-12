@@ -16,6 +16,7 @@
     "create": "Crear",
     "createTransaction": "Crear transacción",
     "deleteTransaction": "Eliminar transacción",
+    "applyFilters": "Aplicar filtros",
     "uploadImage": "Subir imagen",
     "uploading": "Subiendo..."
   },
@@ -44,7 +45,13 @@
     "amount": "Monto",
     "category": "Categoría",
     "description": "Descripción",
-    "date": "Fecha"
+    "date": "Fecha",
+    "filterByAccount": "Filtrar por cuenta",
+    "filterByType": "Filtrar por tipo",
+    "filterByCategory": "Filtrar por categoría",
+    "allAccounts": "Todas las cuentas",
+    "allTypes": "Todos los tipos",
+    "categoryPlaceholder": "Ingresa una categoría"
   },
   "username": "Usuario",
   "password": "Contraseña",

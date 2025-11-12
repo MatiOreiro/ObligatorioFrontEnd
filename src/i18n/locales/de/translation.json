@@ -16,6 +16,7 @@
         "addTransaction": "Erstellen",
         "planUpdate": "Aktualisieren Sie Ihren Plan",
         "deleteTransaction": "Transaktion löschen",
+        "applyFilters": "Filter anwenden",
         "uploadImage": "Bild hochladen",
         "uploading": "Hochladen..."
     },
@@ -44,7 +45,13 @@
         "amount":"Betrag",
         "category":"Kategorie",
         "description":"Beschreibung",
-        "date":"Datum"
+        "date":"Datum",
+        "filterByAccount":"Nach Konto filtern",
+        "filterByType":"Nach Typ filtern",
+        "filterByCategory":"Nach Kategorie filtern",
+        "allAccounts":"Alle Konten",
+        "allTypes":"Alle Typen",
+        "categoryPlaceholder":"Kategorie eingeben"
     },
     "username": "Benutzername",
     "password": "Passwort",
