@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import CrearTransaccionForm from './CrearTransaccionForm'
 import ConfirmDialog from './ConfirmDialog'
 import api from '../data/api'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { agregarTransaccion } from '../features/transacciones.slice'
 import { useTranslation } from 'react-i18next'
+import { restarSaldo1, restarSaldo2, sumarSaldo1, sumarSaldo2 } from '../features/usuario.slice'
+
 
 const CrearTransaccionModal = ({ open, onClose }) => {
     const dispatch = useDispatch();
@@ -13,6 +15,8 @@ const CrearTransaccionModal = ({ open, onClose }) => {
     const [showConfirm, setShowConfirm] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    const cuentas = useSelector(state => state.usuario.cuentas);
 
     useEffect(() => {
         const onKey = (e) => {
@@ -51,8 +55,23 @@ const CrearTransaccionModal = ({ open, onClose }) => {
 
         api.post('/transaccion/crear', payload).then(response => {
             // create a local representation (server may return different shape)
-            const transaccion = { tipo: payload.tipo, monto: payload.monto, descripcion: payload.descripcion, categoria: { nombre: payload.categoria }, cuenta: payload.cuenta, fecha: new Date().toISOString() };
+            const transaccion = { _id: response.data.transaccion._id, tipo: payload.tipo, monto: payload.monto, descripcion: payload.descripcion, categoria: { nombre: payload.categoria }, cuenta: payload.cuenta, fecha: new Date().toISOString() };
             dispatch(agregarTransaccion(transaccion));
+            console.log(payload.cuenta);
+            
+            if (payload.cuenta === cuentas[0]._id) {
+                if (payload.tipo === "ingreso") {
+                    dispatch(sumarSaldo1(payload.monto));
+                } else {
+                    dispatch(restarSaldo1(payload.monto));
+                }
+            } else if (payload.cuenta === cuentas[1]._id) {
+                if (payload.tipo === "ingreso") {
+                    dispatch(sumarSaldo2(payload.monto));
+                } else {
+                    dispatch(restarSaldo2(payload.monto));
+                }
+            }
             onClose();
         }).catch(err => {
             console.error('Error creando transacción', err);

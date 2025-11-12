@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useId } from 'react'
 import { useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { createTransaccionSchema } from '../validators/transacciones.validators';
@@ -11,6 +11,8 @@ const CrearTransaccionForm = ({ onCreate } = {}) => {
     const cuentas = useSelector(state => state.usuario.cuentas);
     const { t } = useTranslation();
     const dispatch = useDispatch();
+
+    const id = useId();
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: joiResolver(createTransaccionSchema)
@@ -25,7 +27,8 @@ const CrearTransaccionForm = ({ onCreate } = {}) => {
 
         // Otherwise behave as before and call the API directly
         const payload = { tipo: data.tipo, monto: data.monto, descripcion: data.descripcion, categoria: data.categoria, cuenta: data.cuenta };
-        const transaccion = { tipo: data.tipo, monto: data.monto, descripcion: data.descripcion, categoria: { nombre: data.categoria }, cuenta: data.cuenta, fecha: new Date().toISOString() };
+        const transaccion = { _id: id, tipo: data.tipo, monto: data.monto, descripcion: data.descripcion, categoria: { nombre: data.categoria }, cuenta: data.cuenta, fecha: new Date().toISOString() };
+        
         api.post('/transaccion/crear', payload).then(response => {
             dispatch(agregarTransaccion(transaccion));
             console.log(payload);
