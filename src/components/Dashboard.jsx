@@ -15,12 +15,15 @@ import CambiarImagenPerfil from './CambiarImagenPerfil';
 import { useSelector } from 'react-redux';
 import { guardarSaldo1, guardarSaldo2 } from '../features/usuario.slice';
 import Saldo from './Saldo';
+import UltimasTransaccionesCuenta from './UltimasTransaccionesCuenta';
 
 const Dashboard = () => {
     const token = localStorage.getItem('token');
     const { t } = useTranslation();
 
     const [saldosCargados, setSaldosCargados] = useState(false);
+    const [cuentasCargadas, setCuentasCargadas] = useState(false);
+    const [transaccionesCargadas, setTransaccionesCargadas] = useState(false);
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -37,7 +40,7 @@ const Dashboard = () => {
             .then(response => {
                 console.log('Transacciones cargadas:', response.data);
                 dispatch(guardarTransacciones(response.data.transacciones));
-
+                setTransaccionesCargadas(true);
             })
             .catch(error => {
                 console.error('Error al cargar transacciones:', error);
@@ -50,6 +53,7 @@ const Dashboard = () => {
                 console.log('Cuentas obtenidas:', response.data);
                 obtenerSaldos(response.data.cuentas);
                 dispatch(guardarCuentas(response.data.cuentas));
+                setCuentasCargadas(true);
             })
             .catch(error => {
                 console.error('Error al obtener cuentas:', error);
@@ -103,7 +107,7 @@ const Dashboard = () => {
                 <h2 className="dashboard-title">{t("dashboard")}</h2>
                 <button className="btn-add" onClick={openCrear} aria-haspopup="dialog" aria-expanded={openCreate}>
                     <span className="btn-add-content">
-                        <svg className="btn-add-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 11V5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6z" fill="currentColor"/></svg>
+                        <svg className="btn-add-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 11V5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6z" fill="currentColor" /></svg>
                         <span>{t('buttons.addTransaction')}</span>
                     </span>
                 </button>
@@ -120,7 +124,13 @@ const Dashboard = () => {
             <PieChartEgresos />
             <LineChart />
             <LineChartEgresos />
-            <Transacciones />
+            {(cuentasCargadas && transaccionesCargadas) && (
+                <div>
+                    <UltimasTransaccionesCuenta cuentaId={cuentas[0]._id} />
+                    <UltimasTransaccionesCuenta cuentaId={cuentas[1]._id} />
+                </div>
+            )}
+            {/* <Transacciones /> */}
         </div>
     )
 }
