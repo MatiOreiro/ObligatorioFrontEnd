@@ -11,6 +11,7 @@ import ConfirmDialog from './ConfirmDialog';
 import { useTranslation } from 'react-i18next';
 import TransaccionEditForm from './TransaccionEditForm';
 import { sumarSaldo1, restarSaldo1, sumarSaldo2, restarSaldo2 } from '../features/usuario.slice';
+import { ToastContainer, toast } from "react-toastify";
 
 const UltimasTransaccionesCuenta = ({ cuentaId }) => {
     const transacciones = useSelector(state => state.transacciones.lista);
@@ -43,27 +44,31 @@ const UltimasTransaccionesCuenta = ({ cuentaId }) => {
 
     const handleDelete = (t) => setConfirmDeleteItem(t)
 
-    const doDelete = (t) => {
-        api.delete(`/transaccion/eliminar/${t._id}`)
+    const doDelete = (transaccion) => {
+        api.delete(`/transaccion/eliminar/${transaccion._id}`)
             .then(response => {
-                dispatch(eliminarTransaccion(t._id));
-                console.log(t);
+                dispatch(eliminarTransaccion(transaccion._id));
+                console.log(transaccion);
 
-                if (t.cuentaId === cuentas[0]._id) {
-                    if (t.tipo === 'ingreso') {
-                        dispatch(restarSaldo1(Number(t.monto)));
+                if (transaccion.cuentaId === cuentas[0]._id) {
+                    if (transaccion.tipo === 'ingreso') {
+                        dispatch(restarSaldo1(Number(transaccion.monto)));
                     } else {
-                        dispatch(sumarSaldo1(Number(t.monto)));
+                        dispatch(sumarSaldo1(Number(transaccion.monto)));
                     }
-                } else if (t.cuentaId === cuentas[1]._id) {
-                    if (t.tipo === 'ingreso') {
-                        dispatch(restarSaldo2(Number(t.monto)));
+                } else if (transaccion.cuentaId === cuentas[1]._id) {
+                    if (transaccion.tipo === 'ingreso') {
+                        dispatch(restarSaldo2(Number(transaccion.monto)));
                     } else {
-                        dispatch(sumarSaldo2(Number(t.monto)));
+                        dispatch(sumarSaldo2(Number(transaccion.monto)));
                     }
                 }
+                toast.success(t("toasts.deleteSuccess"));
             })
-            .catch(err => console.error('Error al eliminar', err))
+            .catch(err => { 
+                console.error('Error al eliminar', err); 
+                toast.error(t("toasts.deleteError")); 
+            })
             .finally(() => setConfirmDeleteItem(null))
     }
 

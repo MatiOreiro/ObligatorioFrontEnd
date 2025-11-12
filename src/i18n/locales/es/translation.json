@@ -15,7 +15,9 @@
     "creating": "Creando...",
     "create": "Crear",
     "createTransaction": "Crear transacción",
-    "deleteTransaction": "Eliminar transacción"
+    "deleteTransaction": "Eliminar transacción",
+    "uploadImage": "Subir imagen",
+    "uploading": "Subiendo..."
   },
   "graphs": {
     "expensesByCategory": "Gastos por categoría",
@@ -61,5 +63,26 @@
     "submit": "Registrarse",
     "backToLogin": "Volver a iniciar sesión",
     "termsAndConditions": "Al registrarte aceptas los términos y condiciones."
+  },
+  "toasts": {
+    "loginSuccess": "¡Inicio de sesión exitoso!",
+    "loginError": "¡Error al iniciar sesión! Verifica los datos",
+    "registerSuccess": "¡Registro exitoso!",
+    "registerError": "¡Error al registrarse! Verifica los datos",
+    "deleteSuccess": "¡Transacción eliminada con éxito!",
+    "deleteError": "¡Error al eliminar la transacción! Inténtalo de nuevo.",
+    "editSuccess": "¡Transacción editada con éxito!",
+    "editError": "¡Error al editar la transacción! Inténtalo de nuevo.",
+    "createSuccess": "¡Transacción creada con éxito!",
+    "createError": "¡Error al crear la transacción! Inténtalo de nuevo.",
+    "uploadSuccess": "¡Imagen de perfil actualizada con éxito!",
+    "uploadError": "¡Error al actualizar la imagen de perfil! Inténtalo de nuevo."
+  },
+  "image": {
+    "changeImage": "Cambiar imagen de perfil",
+    "uploadImage": "Subir imagen",
+    "uploadedImage": "Imagen subida",
+    "url": "URL",
+    "viewImage": "Ver imagen completa"
   }
 }

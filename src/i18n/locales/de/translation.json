@@ -15,7 +15,9 @@
         "createTransaction": "Transaktion erstellen",
         "addTransaction": "Erstellen",
         "planUpdate": "Aktualisieren Sie Ihren Plan",
-        "deleteTransaction": "Transaktion löschen"
+        "deleteTransaction": "Transaktion löschen",
+        "uploadImage": "Bild hochladen",
+        "uploading": "Hochladen..."
     },
     "graphs": {
         "expensesByCategory": "Ausgaben nach Kategorie",
@@ -61,5 +63,26 @@
         "submit": "Registrieren",
         "backToLogin": "Zurück zur Anmeldung",
         "termsAndConditions": "Mit der Registrierung stimmen Sie den Allgemeinen Geschäftsbedingungen zu."
+    },
+    "toasts": {
+        "loginSuccess": "Erfolgreich eingeloggt!",
+        "loginError": "Fehler beim Einloggen! Überprüfen Sie die Daten",
+        "registerSuccess": "Erfolgreich registriert!",
+        "registerError": "Fehler bei der Registrierung! Überprüfen Sie die Daten",
+        "deleteSuccess": "Transaktion erfolgreich gelöscht!",
+        "deleteError": "Fehler beim Löschen der Transaktion! Bitte versuchen Sie es erneut.",
+        "editSuccess": "Transaktion erfolgreich bearbeitet!",
+        "editError": "Fehler beim Bearbeiten der Transaktion! Bitte versuchen Sie es erneut.",
+        "createSuccess": "Transaktion erfolgreich erstellt!",
+        "createError": "Fehler beim Erstellen der Transaktion! Bitte versuchen Sie es erneut.",
+        "uploadSuccess": "Profilbild erfolgreich aktualisiert!",
+        "uploadError": "Fehler beim Aktualisieren des Profilbilds! Bitte versuchen Sie es erneut."
+    },
+    "image": {
+        "changeImage": "Profilbild ändern",
+        "uploadImage": "Bild hochladen",
+        "uploadedImage": "Hochgeladenes Bild",
+        "url": "URL",
+        "viewImage": "Vollbild ansehen"
     }
 }

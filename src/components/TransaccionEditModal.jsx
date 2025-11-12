@@ -5,6 +5,7 @@ import { guardarTransacciones } from '../features/transacciones.slice';
 import ConfirmDialog from './ConfirmDialog';
 import EditTransaccionForm from './EditTransaccionForm';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
 
 const TransaccionEditModal = ({ transaccion, onClose }) => {
     const dispatch = useDispatch();
@@ -89,6 +90,7 @@ const TransaccionEditModal = ({ transaccion, onClose }) => {
                         await api.put(`/transaccion/modificar/${transaccion._id}`, payload, { headers: { Authorization: `Bearer ${token}` } });
                         const response = await api.get('/transaccion/filtrar', { headers: { Authorization: `Bearer ${token}` } });
                         dispatch(guardarTransacciones(response.data.transacciones));
+                                    toast.success(t('toasts.editSuccess'));
                         onClose();
                     } catch (err) {
                         console.error('Error al editar transacción (confirm flow)', err);
@@ -98,6 +100,7 @@ const TransaccionEditModal = ({ transaccion, onClose }) => {
                         const isoMatch = text.match(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/);
                         // No automatic retry: show server message so the user can re-attempt or adjust.
                         const serverMsg = err?.response?.data?.message || err?.response?.data || err.message;
+                        toast.error(t('toasts.editError'));
                         setErrorMessage(typeof serverMsg === 'string' ? serverMsg : JSON.stringify(serverMsg));
                     } finally {
                         setLoading(false);

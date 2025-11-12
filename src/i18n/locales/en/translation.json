@@ -15,7 +15,9 @@
     "creating": "Creating...",
     "create": "Create",
     "createTransaction": "Create Transaction",
-    "deleteTransaction": "Delete Transaction"
+    "deleteTransaction": "Delete Transaction",
+    "uploadImage": "Upload Image",
+    "uploading": "Uploading..."
   },
   "graphs": {
     "expensesByCategory": "Expenses by Category",
@@ -61,5 +63,26 @@
     "submit": "Register",
     "backToLogin": "Back to Login",
     "termsAndConditions": "By registering, you agree to the terms and conditions."
+  },
+  "toasts": {
+    "loginSuccess": "Login successful!",
+    "loginError": "Login error! Please check your details",
+    "registerSuccess": "Registration successful!",
+    "registerError": "Registration error! Please check your details",
+    "deleteSuccess": "Transaction deleted successfully!",
+    "deleteError": "Error deleting transaction! Please try again.",
+    "editSuccess": "Transaction edited successfully!",
+    "editError": "Error editing transaction! Please try again.",
+    "createSuccess": "Transaction created successfully!",
+    "createError": "Error creating transaction! Please try again.",
+    "uploadSuccess": "Profile image updated successfully!",
+    "uploadError": "Error updating profile image! Please try again."
+  },
+  "image": {
+    "changeImage": "Change Profile Image",
+    "uploadImage": "Upload Image",
+    "uploadedImage": "Uploaded Image",
+    "url": "Original URL",
+    "viewImage": "View Full Image"
   }
 }

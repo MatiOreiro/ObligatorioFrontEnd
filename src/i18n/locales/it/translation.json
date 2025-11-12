@@ -1,65 +1,88 @@
 {
-    "name": "Gestore di spese OP",
-    "dashboard": "Cruscotto",
-    "accounts": "Conti",
-    "aboutUs": "Chi siamo",
-    "logout": "Disconnettersi",
-    "buttons": {
-        "planUpdate": "Aggiorna il tuo piano",
-        "addTransaction": "Crea",
-        "close": "Chiudi",
-        "cancel": "Annulla",
-        "save": "Salva",
-        "delete": "Elimina",
-        "edit": "Modifica",
-        "creating": "Creazione...",
-        "create": "Crea",
-        "createTransaction": "Crea transazione",
-        "deleteTransaction": "Elimina transazione"
-    },
-    "graphs": {
-        "expensesByCategory": "Spese per categoria",
-        "incomes": "Redditi",
-        "expenses": "Spese",
-        "last7Income": "Redditi negli ultimi 7 giorni",
-        "last7Expenses": "Spese negli ultimi 7 giorni"
-    },
-    "income": "Reddito",
-    "outcome": "Spesa",
-    "confirmations": {
-        "deleteTransaction": "Sei sicuro di voler eliminare la transazione di ${{ monto }}? Questa azione non può essere annullata.",
-        "createTransaction": "Vuoi creare un {{pendingData.tipo}} per ${{pendingData.monto}}?",
-        "editTransaction": "Vuoi salvare le modifiche alla transazione di ${{monto}}?"
-    },
-    "transactions":{
-        "title": "Transazioni",
-        "createTransaction":"Crea transazione",
-        "editTransaction":"Modifica transazione",
-        "deleteTransaction":"Elimina transazione",
-        "detailsTransaction":"Dettagli della transazione",
-        "account":"Conto",
-        "type":"Tipo di transazione",
-        "amount":"Importo",
-        "category":"Categoria",
-        "description":"Descrizione",
-        "date":"Data"
-    },
-    "username": "Nome utente",
-    "password": "Password",
-    "login": {
-        "title": "Accedi al tuo account",
-        "welcome": "Accedi al tuo account per visualizzare e gestire le tue transazioni",
-        "register": "Registrati qui",
-        "submit": "Accedi",
-        "forgotPassword": "Hai problemi ad accedere? Contatta l'amministratore"
-    },
-    "register": {
-        "title": "Crea account",
-        "welcome": "Iscriviti per iniziare a usare l'app",
-        "email": "Email",
-        "confirmPassword": "Conferma password",
-        "submit": "Registrati",
-        "backToLogin": "Torna al login",
-        "termsAndConditions": "Registrandoti accetti i termini e le condizioni."
+  "name": "Gestore di spese OP",
+  "dashboard": "Cruscotto",
+  "accounts": "Conti",
+  "aboutUs": "Chi siamo",
+  "logout": "Disconnettersi",
+  "buttons": {
+    "planUpdate": "Aggiorna il tuo piano",
+    "addTransaction": "Crea",
+    "close": "Chiudi",
+    "cancel": "Annulla",
+    "save": "Salva",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "creating": "Creazione...",
+    "create": "Crea",
+    "createTransaction": "Crea transazione",
+    "deleteTransaction": "Elimina transazione",
+    "uploadImage": "Carica immagine",
+    "uploading": "Caricamento..."
+  },
+  "graphs": {
+    "expensesByCategory": "Spese per categoria",
+    "incomes": "Redditi",
+    "expenses": "Spese",
+    "last7Income": "Redditi negli ultimi 7 giorni",
+    "last7Expenses": "Spese negli ultimi 7 giorni"
+  },
+  "income": "Reddito",
+  "outcome": "Spesa",
+  "confirmations": {
+    "deleteTransaction": "Sei sicuro di voler eliminare la transazione di ${{ monto }}? Questa azione non può essere annullata.",
+    "createTransaction": "Vuoi creare un {{pendingData.tipo}} per ${{pendingData.monto}}?",
+    "editTransaction": "Vuoi salvare le modifiche alla transazione di ${{monto}}?"
+  },
+  "transactions": {
+    "title": "Transazioni",
+    "createTransaction": "Crea transazione",
+    "editTransaction": "Modifica transazione",
+    "deleteTransaction": "Elimina transazione",
+    "detailsTransaction": "Dettagli della transazione",
+    "account": "Conto",
+    "type": "Tipo di transazione",
+    "amount": "Importo",
+    "category": "Categoria",
+    "description": "Descrizione",
+    "date": "Data"
+  },
+  "username": "Nome utente",
+  "password": "Password",
+  "login": {
+    "title": "Accedi al tuo account",
+    "welcome": "Accedi al tuo account per visualizzare e gestire le tue transazioni",
+    "register": "Registrati qui",
+    "submit": "Accedi",
+    "forgotPassword": "Hai problemi ad accedere? Contatta l'amministratore"
+  },
+  "register": {
+    "title": "Crea account",
+    "welcome": "Iscriviti per iniziare a usare l'app",
+    "email": "Email",
+    "confirmPassword": "Conferma password",
+    "submit": "Registrati",
+    "backToLogin": "Torna al login",
+    "termsAndConditions": "Registrandoti accetti i termini e le condizioni."
+  },
+  "toasts": {
+    "loginSuccess": "Accesso riuscito!",
+    "loginError": "Errore di accesso! Controlla i tuoi dati",
+    "registerSuccess": "Registrazione riuscita!",
+    "registerError": "Errore di registrazione! Controlla i tuoi dati",
+    "deleteSuccess": "Transazione eliminata con successo!",
+    "deleteError": "Errore durante l'eliminazione della transazione! Riprova.",
+    "editSuccess": "Transazione modificata con successo!",
+    "editError": "Errore durante la modifica della transazione! Riprova.",
+    "createSuccess": "Transazione creata con successo!",
+    "createError": "Errore durante la creazione della transazione! Riprova.",
+    "uploadSuccess": "Immagine del profilo aggiornata con successo!",
+    "uploadError": "Errore durante l'aggiornamento dell'immagine del profilo! Riprova."
+  },
+    "image": {
+        "changeImage": "Cambia immagine del profilo",
+        "uploadedImage": "Immagine caricata",
+        "url": "URL originale",
+        "viewImage": "Visualizza immagine",
+        "uploadImage": "Carica immagine"
     }
 }

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { agregarTransaccion } from '../features/transacciones.slice'
 import { useTranslation } from 'react-i18next'
 import { restarSaldo1, restarSaldo2, sumarSaldo1, sumarSaldo2 } from '../features/usuario.slice'
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const CrearTransaccionModal = ({ open, onClose }) => {
@@ -72,9 +73,11 @@ const CrearTransaccionModal = ({ open, onClose }) => {
                     dispatch(restarSaldo2(payload.monto));
                 }
             }
+            toast.success(t('toasts.createSuccess'));
             onClose();
         }).catch(err => {
             console.error('Error creando transacción', err);
+            toast.error(t('toasts.createError'));
             setError('No se pudo crear la transacción.');
         }).finally(() => setLoading(false));
     }

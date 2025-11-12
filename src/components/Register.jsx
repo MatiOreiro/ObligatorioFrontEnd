@@ -7,6 +7,7 @@ import { joiResolver } from '@hookform/resolvers/joi';
 import { useDispatch } from 'react-redux';
 import { guardarCuentas } from '../features/usuario.slice';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Register = () => {
 
@@ -33,9 +34,11 @@ const Register = () => {
                 console.log('Registro exitoso:', response.data);
                 localStorage.setItem('token', response.data.token);
                 navigate('/dashboard');
+                toast.success(t('toasts.registerSuccess'));
             })
             .catch(error => {
                 console.error('Error en el registro:', error);
+                toast.error(t('toasts.registerError'));
             });
     }
 

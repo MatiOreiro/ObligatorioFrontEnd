@@ -7,6 +7,7 @@ import { loginSchema } from '../validators/auth.validators.js';
 import { useDispatch } from 'react-redux';
 import { guardarCuentas } from '../features/usuario.slice';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -42,9 +43,11 @@ const Login = () => {
                 console.log("Login successful:", response.data);
                 localStorage.setItem('token', response.data.token);
                 navigate('/dashboard');
+                toast.success(t('toasts.loginSuccess'));
             }
             ).catch(error => {
                 console.error("Login error:", error);
+                toast.error(t('toasts.loginError'));
                 // Handle login error (e.g., show error message)
             })
             .finally(() => {
@@ -53,6 +56,7 @@ const Login = () => {
     }
 
     return (
+
         <div className="auth-container">
             <div className="login-card" role="region" aria-labelledby="login-title">
                 <div className="brand">
