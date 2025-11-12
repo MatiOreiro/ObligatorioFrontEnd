@@ -38,25 +38,6 @@ const TransaccionEditModal = ({ transaccion, onClose }) => {
         return;
     }
 
-    // Helper: try to get server time from endpoints' Date header. Keep it minimal to avoid noisy 404s.
-    const getServerTime = async (token) => {
-        // Try HEAD / first (should be lightweight and present)
-        try {
-            const headResp = await api.head('/', { headers: { Authorization: `Bearer ${token}` } });
-            const serverDateHeader = headResp.headers?.date;
-            if (serverDateHeader) return new Date(serverDateHeader);
-        } catch (_) { /* ignore */ }
-
-        // Try a lightweight GET to a protected endpoint where server likely responds with Date header
-        try {
-            const getResp = await api.get('/transaccion/filtrar', { headers: { Authorization: `Bearer ${token}` } });
-            const serverDateHeader = getResp.headers?.date;
-            if (serverDateHeader) return new Date(serverDateHeader);
-        } catch (_) { /* ignore */ }
-
-        return null;
-    }
-
     return (
         <>
         <div className="modal-overlay" role="presentation" onMouseDown={(e) => { if (e.target.classList.contains('modal-overlay')) onClose() }}>

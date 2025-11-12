@@ -12,6 +12,8 @@ import TransaccionEditForm from './TransaccionEditForm';
 
 const Transacciones = () => {
     const transacciones = useSelector(state => state.transacciones.lista);
+    console.log("transas", transacciones);
+    
     const [selected, setSelected] = useState(null)
     const [editItem, setEditItem] = useState(null)
     const dispatch = useDispatch();
@@ -30,9 +32,8 @@ const Transacciones = () => {
     const handleDelete = (t) => setConfirmDeleteItem(t)
 
     const doDelete = (t) => {
-        const token = localStorage.getItem('token')
-        api.delete(`/transaccion/eliminar/${t._id}`, { headers: { Authorization: `Bearer ${token}` } })
-            .then(() => api.get('/transaccion/filtrar', { headers: { Authorization: `Bearer ${token}` } }))
+        api.delete(`/transaccion/eliminar/${t._id}`)
+            .then(() => api.get('/transaccion/filtrar'))
             .then(response => dispatch(guardarTransacciones(response.data.transacciones)))
             .catch(err => console.error('Error al eliminar', err))
             .finally(() => setConfirmDeleteItem(null))

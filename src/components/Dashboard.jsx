@@ -11,9 +11,15 @@ import CrearTransaccionModal from './CrearTransaccionModal';
 import MejorarPlan from './MejorarPlan';
 import { guardarCuentas, guardarImagenPerfil } from '../features/usuario.slice';
 import CambiarImagenPerfil from './CambiarImagenPerfil';
+import { useSelector } from 'react-redux';
+import { guardarSaldo1, guardarSaldo2 } from '../features/usuario.slice';
+import Saldo from './Saldo';
+import { set } from 'react-hook-form';
 
 const Dashboard = () => {
     const token = localStorage.getItem('token');
+
+    const [saldosCargados, setSaldosCargados] = useState(false);
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -41,6 +47,7 @@ const Dashboard = () => {
         api.get('/cuenta/')
             .then(response => {
                 console.log('Cuentas obtenidas:', response.data);
+                obtenerSaldos(response.data.cuentas);
                 dispatch(guardarCuentas(response.data.cuentas));
             })
             .catch(error => {
@@ -51,11 +58,36 @@ const Dashboard = () => {
     const obtenerImagenPerfil = () => {
         api.get('/usuario/obtener-imagen')
             .then(response => {
-                console.log('Imagen de perfil obtenida:', response.data);
-                dispatch(guardarImagenPerfil(response.data.imagenPerfil));
+                if (response.data.imagenPerfil !== "") {
+                    console.log('Imagen de perfil obtenida:', response.data);
+                    dispatch(guardarImagenPerfil(response.data.imagenPerfil));
+                }
             })
             .catch(error => {
                 console.error('Error al obtener imagen de perfil:', error);
+            });
+    }
+
+    const cuentas = useSelector(state => state.usuario.cuentas);
+    const saldoCuenta1 = useSelector(state => state.usuario.saldoCuenta1);
+    const saldoCuenta2 = useSelector(state => state.usuario.saldoCuenta2);
+
+    const obtenerSaldos = (cuentas) => {
+        api.get(`/cuenta/${cuentas[0]._id}`)
+            .then(response => {
+                dispatch(guardarSaldo1(response.data.cuenta.saldo));
+                setSaldosCargados(true);
+            })
+            .catch(error => {
+                console.error('Error al obtener saldo de la cuenta 1:', error);
+            });
+
+        api.get(`/cuenta/${cuentas[1]._id}`)
+            .then(response => {
+                dispatch(guardarSaldo2(response.data.cuenta.saldo));
+            })
+            .catch(error => {
+                console.error('Error al obtener saldo de la cuenta 2:', error);
             });
     }
 
@@ -70,7 +102,7 @@ const Dashboard = () => {
                 <h2 className="dashboard-title">Dashboard</h2>
                 <button className="btn-add" onClick={openCrear} aria-haspopup="dialog" aria-expanded={openCreate}>
                     <span className="btn-add-content">
-                        <svg className="btn-add-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 11V5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6z" fill="currentColor"/></svg>
+                        <svg className="btn-add-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 11V5a1 1 0 1 1 2 0v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6z" fill="currentColor" /></svg>
                         <span>Crear</span>
                     </span>
                 </button>
@@ -78,6 +110,12 @@ const Dashboard = () => {
             <CambiarImagenPerfil />
             <CrearTransaccionModal open={openCreate} onClose={closeCrear} />
             <MejorarPlan />
+            {saldosCargados && (
+                <>
+                    <Saldo titulo={cuentas[0].nombre} saldo={saldoCuenta1} />
+                    <Saldo titulo={cuentas[1].nombre} saldo={saldoCuenta2} />
+                </>
+            )}
             <PieChartEgresos />
             <LineChart />
             <LineChartEgresos />
