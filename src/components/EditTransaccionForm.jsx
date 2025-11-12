@@ -1,11 +1,13 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
-import { createTransaccionSchema } from '../validators/transacciones.validators';
+import { editTransaccionSchema } from '../validators/transacciones.validators';
+import { useTranslation } from 'react-i18next'
 
 const EditTransaccionForm = ({ initialValues = {}, onEdit } = {}) => {
+    const { t } = useTranslation();
     const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: joiResolver(createTransaccionSchema),
+        resolver: joiResolver(editTransaccionSchema),
         defaultValues: {
             tipo: initialValues.tipo || 'ingreso',
             monto: initialValues.monto ?? '',
@@ -27,34 +29,34 @@ const EditTransaccionForm = ({ initialValues = {}, onEdit } = {}) => {
     return (
         <form onSubmit={handleSubmit(submit)}>
             <div className="field">
-                <label>Tipo</label>
+                <label>{t('transactions.type')}</label>
                 <select {...register('tipo')}>
-                    <option value="ingreso">Ingreso</option>
-                    <option value="egreso">Egreso</option>
+                    <option value="ingreso">{t('income')}</option>
+                    <option value="egreso">{t('outcome')}</option>
                 </select>
                 {errors.tipo && <div className="error" role="alert">{errors.tipo.message}</div>}
             </div>
 
             <div className="field">
-                <label>Monto</label>
+                <label>{t('transactions.amount')}</label>
                 <input type="number" step="0.01" {...register('monto')} />
                 {errors.monto && <div className="error" role="alert">{errors.monto.message}</div>}
             </div>
 
             <div className="field">
-                <label>Categoría</label>
+                <label>{t('transactions.category')}</label>
                 <input type="text" {...register('categoria')} placeholder="Alimentos, Hogar" />
                 {errors.categoria && <div className="error" role="alert">{errors.categoria.message}</div>}
             </div>
 
             <div className="field">
-                <label>Descripción</label>
+                <label>{t('transactions.description')}</label>
                 <textarea rows={3} {...register('descripcion')}></textarea>
                 {errors.descripcion && <div className="error" role="alert">{errors.descripcion.message}</div>}
             </div>
 
             <div className="form-actions">
-                <button type="submit" className="btn-primary">Guardar</button>
+                <button type="submit" className="btn-primary">{t('buttons.save')}</button>
             </div>
         </form>
     )
