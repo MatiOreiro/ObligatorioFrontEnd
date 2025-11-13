@@ -1,16 +1,47 @@
-# React + Vite
+# 💰 Gestor de Gastos OP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Una aplicación moderna para gestionar tus finanzas personales de manera eficiente y visual.
 
-Currently, two official plugins are available:
+## ✨ Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 📊 **Dashboard interactivo** con gráficos de ingresos y egresos
+- 💳 **Gestión de cuentas** en múltiples monedas (UYU/USD)
+- 📝 **Registro detallado** de transacciones con categorías personalizadas
+- 📈 **Visualización de datos** con gráficos de líneas y circulares
+- 🔐 **Autenticación segura** con sistema de usuarios
+- 🌍 **Multiidioma** - Español, Inglés, Portugués, Francés, Alemán, Italiano y Coreano
+- 🎨 **Interfaz intuitiva** y responsive
+- 📅 **Filtros avanzados** por fecha, categoría, tipo y cuenta
+- ⭐ **Sistema de planes** Plus y Premium
 
-## React Compiler
+## 🚀 Tecnologías
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** - Framework principal
+- **Redux Toolkit** - Gestión de estado
+- **React Router** - Navegación
+- **Chart.js** - Visualización de datos
+- **i18next** - Internacionalización
+- **React Hook Form + Joi** - Validación de formularios
+- **Axios** - Peticiones HTTP
+- **Vite** - Build tool y dev server
 
-## Expanding the ESLint configuration
+## 🛠️ Instalación
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Instalar dependencias
+npm install
+
+# Iniciar servidor de desarrollo
+npm run dev
+
+# Compilar para producción
+npm run build
+```
+
+## 👥 Autores
+
+Desarrollado por **Matías Oreiro** y **Matías Pietrafesa**, estudiantes de la Universidad ORT Uruguay.
+
+---
+
+⚡ Primer proyecto Full Stack dedicado a facilitar la educación financiera personal.
