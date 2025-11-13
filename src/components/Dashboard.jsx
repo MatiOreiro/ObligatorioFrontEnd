@@ -57,7 +57,9 @@ const Dashboard = () => {
                 console.log('Cuentas obtenidas:', response.data);
                 obtenerSaldos(response.data.cuentas);
                 dispatch(guardarCuentas(response.data.cuentas));
-                dispatch(actualizarPlan(response.data.plan));
+                if (response.data.plan.tipo === 'premium') {
+                    dispatch(actualizarPlan(response.data.plan));
+                }
                 setCuentasCargadas(true);
             })
             .catch(error => {
