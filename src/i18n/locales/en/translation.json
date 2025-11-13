@@ -1,8 +1,6 @@
 {
   "name": "Expense Manager OP",
   "dashboard": "Dashboard",
-  "accounts": "Accounts",
-  "aboutUs": "About Us",
   "logout": "Log Out",
   "buttons": {
     "planUpdate": "Upgrade Your Plan",
@@ -91,5 +89,17 @@
     "uploadedImage": "Uploaded Image",
     "url": "Original URL",
     "viewImage": "View Full Image"
+  },
+  "accounts": {
+    "accounts": "Accounts",
+    "uyu": "Peso Account",
+    "usd": "Dollar Account",
+    "usage": "Free Plan Usage",
+    "premium": "Unlimited transactions with Premium Plan"
+  },
+  "aboutUs": {
+    "aboutUs": "About Us",
+    "title": "Learn More About Us",
+    "description": "We are Matías Oreiro and Matías Pietrafesa, two students from Universidad ORT Uruguay. This is our first Full Stack development project. Our project is dedicated to helping you manage your personal finances efficiently and easily. Our application allows you to keep detailed track of your income and expenses, offering you visual tools to better understand your financial situation. We believe in the importance of financial education and are committed to providing you with an intuitive and secure experience. Thank you for trusting us to accompany you on your journey to better financial management!"
   }
 }

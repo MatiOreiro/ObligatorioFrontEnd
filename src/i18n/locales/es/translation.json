@@ -1,8 +1,6 @@
 {
   "name": "Gestor de gastos OP",
   "dashboard": "Tablero",
-  "accounts": "Cuentas",
-  "aboutUs": "Sobre nosotros",
   "logout": "Cerrar sesión",
   "buttons": {
     "planUpdate": "Actualiza tu plan",
@@ -91,5 +89,18 @@
     "uploadedImage": "Imagen subida",
     "url": "URL",
     "viewImage": "Ver imagen completa"
+  },
+  "accounts": {
+    "accounts": "Cuentas",
+    "uyu": "Cuenta en pesos",
+    "usd": "Cuenta en dólares",
+    "usage": "Uso del plan gratis",
+    "premium": "Transacciones ilimitadas con el plan Premium"
+  },
+  "aboutUs": {
+    "aboutUs": "Sobre nosotros",
+    "title": "Te contamos un poco más sobre nosotros",
+    "description": "Somos Matías Oreiro y Matías Pietrafesa, dos estudiantes de la Universidad ORT Uruguay. Este es nuestro primer proyecto de desarrollo Full Stack. Nuestro proyecto está dedicado a ayudarte a gestionar tus finanzas personales de manera eficiente y sencilla. Nuestra aplicación te permite llevar un control detallado de tus ingresos y gastos, ofreciéndote herramientas visuales para entender mejor tu situación financiera. Creemos en la importancia de la educación financiera y estamos comprometidos en proporcionarte una experiencia intuitiva y segura. ¡Gracias por confiar en nosotros para acompañarte en tu viaje hacia una mejor gestión financiera!"
   }
+
 }

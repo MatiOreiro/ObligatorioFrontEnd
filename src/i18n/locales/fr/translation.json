@@ -1,8 +1,6 @@
 {
     "name": "Gestionnaire de dépenses OP",
     "dashboard": "Tableau de bord",
-    "accounts": "Comptes",
-    "aboutUs": "À propos de nous",
     "logout": "Se déconnecter",
     "buttons": {
         "planUpdate": "Mettez à jour votre plan",
@@ -91,5 +89,17 @@
         "url": "URL",
         "viewImage": "Voir l'image",
         "uploadImage": "Télécharger l'image"
+    },
+    "accounts": {
+        "accounts": "Comptes",
+        "uyu": "Compte en pesos",
+        "usd": "Compte en dollars",
+        "usage": "Utilisation du plan gratuit",
+        "premium": "Transactions illimitées avec le plan Premium"
+    },
+    "aboutUs": {
+        "aboutUs": "À propos de nous",
+        "title": "En savoir plus sur nous",
+        "description": "Nous sommes Matías Oreiro et Matías Pietrafesa, deux étudiants de l'Universidad ORT Uruguay. Il s'agit de notre premier projet de développement Full Stack. Notre projet est dédié à vous aider à gérer vos finances personnelles de manière efficace et simple. Notre application vous permet de suivre en détail vos revenus et dépenses, en vous offrant des outils visuels pour mieux comprendre votre situation financière. Nous croyons en l'importance de l'éducation financière et nous nous engageons à vous offrir une expérience intuitive et sécurisée. Merci de nous faire confiance pour vous accompagner dans votre parcours vers une meilleure gestion financière !"
     }
 }

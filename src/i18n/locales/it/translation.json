@@ -1,8 +1,6 @@
 {
   "name": "Gestore di spese OP",
   "dashboard": "Cruscotto",
-  "accounts": "Conti",
-  "aboutUs": "Chi siamo",
   "logout": "Disconnettersi",
   "buttons": {
     "planUpdate": "Aggiorna il tuo piano",
@@ -91,5 +89,17 @@
         "url": "URL originale",
         "viewImage": "Visualizza immagine",
         "uploadImage": "Carica immagine"
+    },
+    "accounts": {
+        "accounts": "Conti",
+        "uyu": "Conto in pesos",
+        "usd": "Conto in dollari",
+        "usage": "Utilizzo del piano gratuito",
+        "premium": "Transazioni illimitate con il piano Premium"
+    },
+    "aboutUs": {
+        "aboutUs": "Chi siamo",
+        "title": "Scopri di più su di noi",
+        "description": "Siamo Matías Oreiro e Matías Pietrafesa, due studenti dell'Universidad ORT Uruguay. Questo è il nostro primo progetto di sviluppo Full Stack. Il nostro progetto è dedicato ad aiutarti a gestire le tue finanze personali in modo efficiente e semplice. La nostra applicazione ti consente di tenere traccia dettagliata delle tue entrate e uscite, offrendoti strumenti visivi per comprendere meglio la tua situazione finanziaria. Crediamo nell'importanza dell'educazione finanziaria e ci impegniamo a offrirti un'esperienza intuitiva e sicura. Grazie per averci scelto per accompagnarti nel tuo percorso verso una migliore gestione finanziaria!"
     }
 }

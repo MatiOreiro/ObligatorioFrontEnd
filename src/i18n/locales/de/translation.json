@@ -1,8 +1,6 @@
 {
     "name": "OP-Ausgabenmanager",
     "dashboard": "Instrumententafel",
-    "accounts": "Konten",
-    "aboutUs": "Über uns",
     "logout": "Abmelden",
     "buttons": {
         "close": "Schließen",
@@ -91,5 +89,17 @@
         "uploadedImage": "Hochgeladenes Bild",
         "url": "URL",
         "viewImage": "Vollbild ansehen"
+    },
+    "accounts": {
+        "accounts": "Konten",
+        "uyu": "Pesokonto",
+        "usd": "Dollar-Konto",
+        "usage": "Nutzung des kostenlosen Plans",
+        "premium": "Unbegrenzte Transaktionen mit dem Premium-Plan"
+    },
+    "aboutUs": {
+        "aboutUs": "Über uns",
+        "title": "Erfahren Sie mehr über uns",
+        "description": "Wir sind Matías Oreiro und Matías Pietrafesa, zwei Studenten der Universidad ORT Uruguay. Dies ist unser erstes Full-Stack-Entwicklungsprojekt. Unser Projekt widmet sich der effizienten und einfachen Verwaltung Ihrer persönlichen Finanzen. Unsere Anwendung ermöglicht es Ihnen, Ihre Einnahmen und Ausgaben detailliert zu verfolgen und bietet Ihnen visuelle Werkzeuge, um Ihre finanzielle Situation besser zu verstehen. Wir glauben an die Bedeutung der finanziellen Bildung und sind bestrebt, Ihnen eine intuitive und sichere Erfahrung zu bieten. Vielen Dank, dass Sie uns auf Ihrer Reise zu einer besseren Finanzverwaltung begleiten!"
     }
 }

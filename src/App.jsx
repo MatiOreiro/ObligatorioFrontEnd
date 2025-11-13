@@ -13,6 +13,7 @@ import Dashboard from './components/Dashboard'
 import Transacciones from './components/Transacciones'
 import { ToastContainer, Bounce } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import SobreNosotros from './components/SobreNosotros'
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path='/transacciones' element={<ProtectedRoute />} >
             <Route path='/transacciones' element={<Transacciones />} />
           </Route>
+          <Route path='/sobre-nosotros' element={<SobreNosotros />} />
           <Route path='*' element={<NoEncontrado />} />
         </Route>
       </Routes>
