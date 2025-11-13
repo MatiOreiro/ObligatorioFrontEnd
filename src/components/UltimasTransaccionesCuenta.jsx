@@ -13,7 +13,7 @@ import TransaccionEditForm from './TransaccionEditForm';
 import { sumarSaldo1, restarSaldo1, sumarSaldo2, restarSaldo2 } from '../features/usuario.slice';
 import { ToastContainer, toast } from "react-toastify";
 
-const UltimasTransaccionesCuenta = ({ cuentaId }) => {
+const UltimasTransaccionesCuenta = ({ cuentaId, moneda }) => {
     const transacciones = useSelector(state => state.transacciones.lista);
     const cuentas = useSelector(state => state.usuario.cuentas);
     const [transaccionesCuenta, setTransaccionesCuenta] = useState([]);
@@ -77,7 +77,7 @@ const UltimasTransaccionesCuenta = ({ cuentaId }) => {
 
     return (
         <div>
-            <h2>{t('transactions.title')}</h2>
+            <h2>{t('transactions.title')} {moneda}</h2>
             <ul>
                 {transaccionesCuenta.map(transaccion => (
                     <li key={transaccion._id}>

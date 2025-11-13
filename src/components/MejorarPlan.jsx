@@ -22,9 +22,9 @@ const MejorarPlan = () => {
     }
 
     return (
-        <>
-            <button onClick={handleActualizarPlan}>{t('buttons.planUpdate')}</button>
-        </>
+        <div className="mejorar-plan">
+            <button className="btn--secondary" onClick={handleActualizarPlan}>{t('buttons.planUpdate')}</button>
+        </div>
     )
 }
 

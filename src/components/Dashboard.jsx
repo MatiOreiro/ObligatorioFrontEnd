@@ -7,7 +7,6 @@ import LineChart from './dashboard/LineChart';
 import LineChartEgresos from './dashboard/LineChartEgresos';
 import PieChartEgresos from './dashboard/PieChartEgresos';
 import CrearTransaccionModal from './CrearTransaccionModal';
-import MejorarPlan from './MejorarPlan';
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
 import { guardarCuentas, guardarImagenPerfil } from '../features/usuario.slice';
@@ -113,26 +112,39 @@ const Dashboard = () => {
                     </span>
                 </button>
             </div>
-            <CambiarImagenPerfil />
-            <CrearTransaccionModal open={openCreate} onClose={closeCrear} />
-            <MejorarPlan />
-            <ConsumoPlan />
-            {saldosCargados && (
-                <>
-                    <Saldo titulo={cuentas[0].nombre} saldo={saldoCuenta1} />
-                    <Saldo titulo={cuentas[1].nombre} saldo={saldoCuenta2} />
-                </>
-            )}
-            <PieChartEgresos />
-            <LineChart />
-            <LineChartEgresos />
-            {(cuentasCargadas && transaccionesCargadas) && (
-                <div>
-                    <UltimasTransaccionesCuenta cuentaId={cuentas[0]._id} />
-                    <UltimasTransaccionesCuenta cuentaId={cuentas[1]._id} />
+
+            <div className="dashboard-layout">
+                <div className="dashboard-top">
+                    <div className="saldo-group">
+                        {saldosCargados && (
+                            <>
+                                <Saldo titulo={cuentas[0].nombre} saldo={saldoCuenta1} />
+                                <Saldo titulo={cuentas[1].nombre} saldo={saldoCuenta2} />
+                            </>
+                        )}
+                    </div>
+
+                    <div className="profile-photo-container">
+                        <CambiarImagenPerfil />
+                    </div>
                 </div>
-            )}
-            {/* <Transacciones /> */}
+
+                <CrearTransaccionModal open={openCreate} onClose={closeCrear} />
+                <ConsumoPlan />
+
+                <div className="charts-grid">
+                    <div className="chart"><PieChartEgresos /></div>
+                    <div className="chart"><LineChart /></div>
+                    <div className="chart"><LineChartEgresos /></div>
+                </div>
+
+                {(cuentasCargadas && transaccionesCargadas) && (
+                    <div className="transacciones-por-cuenta">
+                        <UltimasTransaccionesCuenta cuentaId={cuentas[0]._id} moneda="UYU"/>
+                        <UltimasTransaccionesCuenta cuentaId={cuentas[1]._id} moneda="USD"/>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }

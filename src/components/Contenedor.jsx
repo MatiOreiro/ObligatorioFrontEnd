@@ -35,15 +35,17 @@ const Contenedor = () => {
         <>
             <BurgerMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
             <div className="contenedor">
-                <button className="burger-toggle icon-btn btn-ghost" aria-label="Abrir menú" onClick={() => setMenuOpen(true)}>☰</button>
-                <select onChange={cambiarIdioma} defaultValue={i18n.language} className="language-select" >
-                    <option value="en">English</option>
-                    <option value="es">Español</option>
-                    <option value="fr">Français</option>
-                    <option value="it">Italiano</option>
-                    <option value="pt">Português</option>
-                    <option value="ko">한국어</option>
-                </select>
+                <div className="left-controls">
+                    <button className="burger-toggle icon-btn btn-ghost" aria-label="Abrir menú" onClick={() => setMenuOpen(true)}>☰</button>
+                    <select onChange={cambiarIdioma} defaultValue={i18n.language} className="language-select" >
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="it">Italiano</option>
+                        <option value="pt">Português</option>
+                        <option value="ko">한국어</option>
+                    </select>
+                </div>
                 <h1>{t('name')}</h1>
                 {loggeado && (
                     <div className="right-controls">
