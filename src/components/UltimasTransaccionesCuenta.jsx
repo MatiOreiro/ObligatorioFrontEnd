@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { useDispatch } from 'react-redux';
 import { eliminarTransaccion } from '../features/transacciones.slice';
 import { useSelector } from 'react-redux';
@@ -9,9 +8,8 @@ import TransaccionModal from './TransaccionModal';
 import TransaccionEditModal from './TransaccionEditModal';
 import ConfirmDialog from './ConfirmDialog';
 import { useTranslation } from 'react-i18next';
-import TransaccionEditForm from './TransaccionEditForm';
 import { sumarSaldo1, restarSaldo1, sumarSaldo2, restarSaldo2 } from '../features/usuario.slice';
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const UltimasTransaccionesCuenta = ({ cuentaId, moneda }) => {
     const transacciones = useSelector(state => state.transacciones.lista);

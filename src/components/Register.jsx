@@ -5,9 +5,8 @@ import { registerSchema } from '../validators/auth.validators.js';
 import api from '../data/api';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useDispatch } from 'react-redux';
-import { guardarCuentas } from '../features/usuario.slice';
 import { useTranslation } from 'react-i18next';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const Register = () => {
 
@@ -17,8 +16,9 @@ const Register = () => {
 
     const { t } = useTranslation();
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: joiResolver(registerSchema) 
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm({
+        resolver: joiResolver(registerSchema),
+        mode: 'onChange'
     })
 
     useEffect(() => {
@@ -57,25 +57,29 @@ const Register = () => {
                     <div className="field">
                         <label htmlFor="registerUser">{t('username')}</label>
                         <input type="text" id='registerUser' placeholder="abcd1234" {...register("username")} />
+                        {errors.username && <span className="error-message" role="alert">{errors.username.message}</span>}
                     </div>
 
                     <div className="field">
                         <label htmlFor="registerEmail">{t('register.email')}</label>
                         <input type="email" id='registerEmail' placeholder="correo@example.com" {...register("email")} />
+                        {errors.email && <span className="error-message" role="alert">{errors.email.message}</span>}
                     </div>
 
                     <div className="field">
                         <label htmlFor="registerPassword">{t('password')}</label>
                         <input type="password" id='registerPassword' placeholder="••••••••" {...register("password")} />
+                        {errors.password && <span className="error-message" role="alert">{errors.password.message}</span>}
                     </div>
 
                     <div className="field">
                         <label htmlFor="registerConfirmPassword">{t('register.confirmPassword')}</label>
                         <input type="password" id='registerConfirmPassword' placeholder="••••••••" {...register("confirmPassword")} />
+                        {errors.confirmPassword && <span className="error-message" role="alert">{errors.confirmPassword.message}</span>}
                     </div>
 
                     <div className="form-actions">
-                        <button className="btn-primary" type="submit">{t('register.submit')}</button>
+                        <button className="btn-primary" type="submit" disabled={!isValid}>{t('register.submit')}</button>
                         <Link to="/" className="secondary-link" aria-label={t('register.backToLogin')}>{t('register.backToLogin')}</Link>
                     </div>
 

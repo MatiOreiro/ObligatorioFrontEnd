@@ -50,6 +50,9 @@ const usuarioSlice = createSlice({
         tipo: 'premium',
       };
     },
+    actualizarPlan: (state, action) => {
+      state.plan = action.payload;
+    },
   },
 });
 
@@ -64,6 +67,7 @@ export const {
   sumarSaldo1, 
   restarSaldo2, 
   sumarSaldo2, 
-  mejorarPlan
+  mejorarPlan,
+  actualizarPlan
 } = usuarioSlice.actions;
 export default usuarioSlice.reducer;

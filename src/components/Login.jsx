@@ -5,9 +5,8 @@ import { useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { loginSchema } from '../validators/auth.validators.js';
 import { useDispatch } from 'react-redux';
-import { guardarCuentas } from '../features/usuario.slice';
 import { useTranslation } from 'react-i18next';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -17,8 +16,11 @@ const Login = () => {
 
     const { t } = useTranslation();
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: joiResolver(loginSchema)
+    // useForm is valid only when all fields pass validation
+    // disable submit button otherwise
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm({
+        resolver: joiResolver(loginSchema),
+        mode: 'onChange'
     });
 
     const [loading, setLoading] = useState(false);
@@ -81,7 +83,7 @@ const Login = () => {
                     </div>
 
                     <div className="form-actions">
-                        <button className="btn-primary" type="submit" disabled={loading}>{loading ? t('login.submit') + '…' : t('login.submit')}</button>
+                        <button className="btn-primary" type="submit" disabled={loading || !isValid}>{loading ? t('login.submit') + '…' : t('login.submit')}</button>
                         <Link to="/register" className="secondary-link" aria-label={t('login.register')}>{t('login.register')}</Link>
                     </div>
 

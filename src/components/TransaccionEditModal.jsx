@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { restarSaldo1, restarSaldo2, sumarSaldo1, sumarSaldo2 } from '../features/usuario.slice'
 import TransaccionEditForm from './TransaccionEditForm'
 import { actualizarTransaccion } from '../features/transacciones.slice'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 
 
 const TransaccionEditModal = ({ _id, tipo, monto, categoria, descripcion, handleEdit, open, onClose }) => {
@@ -126,11 +126,11 @@ const TransaccionEditModal = ({ _id, tipo, monto, categoria, descripcion, handle
 
             {showConfirm && (
                 <ConfirmDialog
-                    title={t('transactions.createTransaction')}
-                    message={t('confirmations.createTransaction', { pendingData })}
+                    title={t('transactions.editTransaction')}
+                    message={t('confirmations.editTransaction', { pendingData })}
                     onConfirm={handleConfirm}
                     onCancel={handleCancelConfirm}
-                    confirmLabel={loading ? t('buttons.creating') : t('buttons.create')}
+                    confirmLabel={loading ? t('buttons.editing') : t('buttons.edit')}
                     cancelLabel={t('buttons.cancel')}
                 />
             )}

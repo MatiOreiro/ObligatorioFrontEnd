@@ -4,7 +4,7 @@
     "logout": "Se déconnecter",
     "buttons": {
         "planUpdate": "Mettez à jour votre plan",
-        "addTransaction": "Créer",
+        "addTransaction": "Créer une transaction",
         "close": "Fermer",
         "cancel": "Annuler",
         "save": "Enregistrer",
@@ -20,6 +20,7 @@
     },
     "graphs": {
         "expensesByCategory": "Dépenses par catégorie",
+        "incomeByCategory": "Revenus par catégorie",
         "incomes": "Revenus",
         "expenses": "Dépenses",
         "last7Income": "Revenus des 7 derniers jours",
@@ -49,7 +50,15 @@
         "filterByCategory":"Filtrer par catégorie",
         "allAccounts":"Tous les comptes",
         "allTypes":"Tous les types",
-        "categoryPlaceholder":"Entrez une catégorie"
+        "categoryPlaceholder":"Entrez une catégorie",
+        "filterByDateFrom": "Filtrer par date de",
+        "filterByDateTo": "Filtrer par date à",
+        "clearFilters": "Effacer les filtres",
+        "filterByPeriod": "Filtrer par période",
+        "allPeriods": "Toutes les périodes",
+        "lastWeek": "La semaine dernière",
+        "lastMonth": "Le mois dernier",
+        "lastYear": "L'année dernière"
     },
     "username": "Nom d'utilisateur",
     "password": "Mot de passe",
@@ -81,7 +90,9 @@
         "createSuccess": "Transaction créée avec succès !",
         "createError": "Erreur lors de la création de la transaction ! Veuillez réessayer.",
         "uploadSuccess": "Image de profil mise à jour avec succès !",
-        "uploadError": "Erreur lors de la mise à jour de l'image de profil ! Veuillez réessayer."
+        "uploadError": "Erreur lors de la mise à jour de l'image de profil ! Veuillez réessayer.",
+        "planUpdated": "Plan mis à jour avec succès !",
+        "planUpdateError": "Erreur lors de la mise à jour du plan ! Veuillez réessayer."
     },
     "image": {
         "changeImage": "Changer l'image de profil",
@@ -95,7 +106,7 @@
         "uyu": "Compte en pesos",
         "usd": "Compte en dollars",
         "usage": "Utilisation du plan gratuit",
-        "premium": "Transactions illimitées avec le plan Premium"
+        "premium": "Transactions illimitées avec le plan Premium!"
     },
     "aboutUs": {
         "aboutUs": "À propos de nous",

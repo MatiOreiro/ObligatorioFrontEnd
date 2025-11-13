@@ -40,7 +40,6 @@ const BurgerMenu = ({ open, onClose, children }) => {
                     <ul>
                       <li><Link to="/dashboard" onClick={onClose}>{t('dashboard')}</Link></li>
                       <li><Link to="/transacciones" onClick={onClose}>{t('transactions.title')}</Link></li>
-                      <li><Link to="/actualizar-plan" onClick={onClose}>{t('buttons.planUpdate')}</Link></li>
                       <li><Link to="/sobre-nosotros" onClick={onClose}>{t('aboutUs.aboutUs')}</Link></li>
                       <li><button className="secondary-link" onClick={handleLogout}>{t('logout')}</button></li>
                     </ul>

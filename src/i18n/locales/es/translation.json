@@ -4,7 +4,7 @@
   "logout": "Cerrar sesión",
   "buttons": {
     "planUpdate": "Actualiza tu plan",
-    "addTransaction": "Crear",
+    "addTransaction": "Crear Transacción",
     "close": "Cerrar",
     "cancel": "Cancelar",
     "save": "Guardar",
@@ -20,6 +20,7 @@
   },
   "graphs": {
     "expensesByCategory": "Gastos por categoría",
+    "incomeByCategory": "Ingresos por categoría",
     "incomes": "Ingresos",
     "expenses": "Gastos",
     "last7Income": "Ingresos en los últimos 7 días",
@@ -30,7 +31,7 @@
   "confirmations": {
     "deleteTransaction": "¿Estás seguro de que deseas eliminar la transacción de ${{monto}}? Esta acción no se puede deshacer.",
     "createTransaction": "¿Desea crear un {{pendingData.tipo}} por ${{pendingData.monto}}?",
-    "editTransaction": "¿Deseas guardar los cambios en la transacción de ${{monto}}?"
+    "editTransaction": "¿Deseas guardar los cambios en la transacción de ${{pendingData.monto}}?"
   },
   "transactions": {
     "title": "Transacciones",
@@ -49,7 +50,15 @@
     "filterByCategory": "Filtrar por categoría",
     "allAccounts": "Todas las cuentas",
     "allTypes": "Todos los tipos",
-    "categoryPlaceholder": "Ingresa una categoría"
+    "categoryPlaceholder": "Ingresa una categoría",
+    "filterByDateFrom": "Filtrar por fecha desde",
+    "filterByDateTo": "Filtrar por fecha hasta",
+    "clearFilters": "Limpiar filtros",
+    "filterByPeriod": "Filtrar por período",
+    "allPeriods": "Todos los períodos",
+    "lastWeek": "Última semana",
+    "lastMonth": "Último mes",
+    "lastYear": "Último año"
   },
   "username": "Usuario",
   "password": "Contraseña",
@@ -81,7 +90,9 @@
     "createSuccess": "¡Transacción creada con éxito!",
     "createError": "¡Error al crear la transacción! Inténtalo de nuevo.",
     "uploadSuccess": "¡Imagen de perfil actualizada con éxito!",
-    "uploadError": "¡Error al actualizar la imagen de perfil! Inténtalo de nuevo."
+    "uploadError": "¡Error al actualizar la imagen de perfil! Inténtalo de nuevo.",
+    "planUpdated": "¡Plan actualizado con éxito!",
+    "planUpdateError": "¡Error al actualizar el plan! Inténtalo de nuevo."
   },
   "image": {
     "changeImage": "Cambiar imagen de perfil",
@@ -95,7 +106,7 @@
     "uyu": "Cuenta en pesos",
     "usd": "Cuenta en dólares",
     "usage": "Uso del plan gratis",
-    "premium": "Transacciones ilimitadas con el plan Premium"
+    "premium": "Transacciones ilimitadas con el plan Premium!"
   },
   "aboutUs": {
     "aboutUs": "Sobre nosotros",

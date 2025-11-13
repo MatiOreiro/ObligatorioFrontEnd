@@ -4,7 +4,7 @@
   "logout": "Log Out",
   "buttons": {
     "planUpdate": "Upgrade Your Plan",
-    "addTransaction": "Create",
+    "addTransaction": "Create Transaction",
     "close": "Close",
     "cancel": "Cancel",
     "save": "Save",
@@ -20,6 +20,7 @@
   },
   "graphs": {
     "expensesByCategory": "Expenses by Category",
+    "incomeByCategory": "Income by Category",
     "incomes": "Incomes",
     "expenses": "Expenses",
     "last7Income": "Incomes in the last 7 days",
@@ -49,7 +50,15 @@
     "filterByCategory": "Filter by Category",
     "allAccounts": "All Accounts",
     "allTypes": "All Types",
-    "categoryPlaceholder": "Enter a category"
+    "categoryPlaceholder": "Enter a category",
+    "filterByDateFrom": "Filter by Date From",
+    "filterByDateTo": "Filter by Date To",
+    "clearFilters": "Clear Filters",
+    "filterByPeriod": "Filter by Period",
+    "allPeriods": "All Periods",
+    "lastWeek": "Last Week",
+    "lastMonth": "Last Month",
+    "lastYear": "Last Year"
   },
   "username": "Username",
   "password": "Password",
@@ -81,7 +90,9 @@
     "createSuccess": "Transaction created successfully!",
     "createError": "Error creating transaction! Please try again.",
     "uploadSuccess": "Profile image updated successfully!",
-    "uploadError": "Error updating profile image! Please try again."
+    "uploadError": "Error updating profile image! Please try again.",
+    "planUpdated": "Plan updated successfully!",
+    "planUpdateError": "Error updating plan! Please try again."
   },
   "image": {
     "changeImage": "Change Profile Image",
@@ -95,7 +106,7 @@
     "uyu": "Peso Account",
     "usd": "Dollar Account",
     "usage": "Free Plan Usage",
-    "premium": "Unlimited transactions with Premium Plan"
+    "premium": "Unlimited transactions with Premium Plan!"
   },
   "aboutUs": {
     "aboutUs": "About Us",

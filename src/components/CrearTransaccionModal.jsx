@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { agregarTransaccion } from '../features/transacciones.slice'
 import { useTranslation } from 'react-i18next'
 import { restarSaldo1, restarSaldo2, sumarSaldo1, sumarSaldo2 } from '../features/usuario.slice'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 const CrearTransaccionModal = ({ open, onClose }) => {

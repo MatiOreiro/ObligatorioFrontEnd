@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next';
 import api from '../data/api';
 import { mejorarPlan } from '../features/usuario.slice';
+import { toast } from 'react-toastify';
 
 const ConsumoPlan = () => {
     const { t } = useTranslation();
@@ -16,9 +17,11 @@ const ConsumoPlan = () => {
                 console.log('Plan actualizado:', response.data);
                 dispatch(mejorarPlan());
                 if (response.data.token) localStorage.setItem('token', response.data.token);
+                toast.success(t('toasts.planUpdated'));
             })
             .catch(error => {
                 console.error('Error al actualizar el plan:', error);
+                toast.error(t('toasts.planUpdateError'));
             });
     }
 

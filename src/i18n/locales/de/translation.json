@@ -11,7 +11,7 @@
         "creating": "Erstellen...",
         "create": "Erstellen",
         "createTransaction": "Transaktion erstellen",
-        "addTransaction": "Erstellen",
+        "addTransaction": "Transaktion erstellen",
         "planUpdate": "Aktualisieren Sie Ihren Plan",
         "deleteTransaction": "Transaktion löschen",
         "applyFilters": "Filter anwenden",
@@ -20,6 +20,7 @@
     },
     "graphs": {
         "expensesByCategory": "Ausgaben nach Kategorie",
+        "incomeByCategory": "Einkommen nach Kategorie",
         "incomes": "Einkommen",
         "expenses": "Ausgaben",
         "last7Income": "Einkommen in den letzten 7 Tagen",
@@ -49,7 +50,15 @@
         "filterByCategory":"Nach Kategorie filtern",
         "allAccounts":"Alle Konten",
         "allTypes":"Alle Typen",
-        "categoryPlaceholder":"Kategorie eingeben"
+        "categoryPlaceholder":"Kategorie eingeben",
+        "filterByDateFrom": "Datum von filtern",
+        "filterByDateTo": "Datum bis filtern",
+        "clearFilters": "Filter löschen",
+        "filterByPeriod": "Nach Zeitraum filtern",
+        "allPeriods": "Alle Zeiträume",
+        "lastWeek": "Letzte Woche",
+        "lastMonth": "Letzter Monat",
+        "lastYear": "Letztes Jahr"
     },
     "username": "Benutzername",
     "password": "Passwort",
@@ -81,7 +90,9 @@
         "createSuccess": "Transaktion erfolgreich erstellt!",
         "createError": "Fehler beim Erstellen der Transaktion! Bitte versuchen Sie es erneut.",
         "uploadSuccess": "Profilbild erfolgreich aktualisiert!",
-        "uploadError": "Fehler beim Aktualisieren des Profilbilds! Bitte versuchen Sie es erneut."
+        "uploadError": "Fehler beim Aktualisieren des Profilbilds! Bitte versuchen Sie es erneut.",
+        "planUpdated": "Plan erfolgreich aktualisiert!",
+        "planUpdateError": "Fehler beim Aktualisieren des Plans! Bitte versuchen Sie es erneut."
     },
     "image": {
         "changeImage": "Profilbild ändern",
@@ -95,7 +106,7 @@
         "uyu": "Pesokonto",
         "usd": "Dollar-Konto",
         "usage": "Nutzung des kostenlosen Plans",
-        "premium": "Unbegrenzte Transaktionen mit dem Premium-Plan"
+        "premium": "Unbegrenzte Transaktionen mit dem Premium-Plan!"
     },
     "aboutUs": {
         "aboutUs": "Über uns",

@@ -70,7 +70,6 @@ const Transaccion = ({ transaccion, onEdit = () => {}, onDelete = () => {}, onDe
                         </button>
                     </div>
                 </header>
-                {/* descripción removida por petición del usuario */}
             </div>
         </article>
     )

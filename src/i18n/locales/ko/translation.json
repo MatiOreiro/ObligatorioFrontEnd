@@ -4,7 +4,7 @@
   "logout": "로그아웃",
   "buttons": {
     "planUpdate": "플랜 업그레이드",
-    "addTransaction": "생성",
+    "addTransaction": "생성 거래",
     "close": "닫기",
     "cancel": "취소",
     "save": "저장",
@@ -20,6 +20,7 @@
   },
   "graphs": {
     "expensesByCategory": "카테고리별 지출",
+    "incomeByCategory": "카테고리별 수입",
     "incomes": "수입",
     "expenses": "지출",
     "last7Income": "지난 7일간 수입",
@@ -44,12 +45,20 @@
     "category": "카테고리",
     "description": "설명",
     "date": "날짜",
-            "filterByAccount":"계정별 필터",
-        "filterByType":"유형별 필터",
-        "filterByCategory":"카테고리별 필터",
-        "allAccounts":"모든 계정",
-        "allTypes":"모든 유형",
-        "categoryPlaceholder":"카테고리를 입력하세요"
+    "filterByAccount": "계정별 필터",
+    "filterByType": "유형별 필터",
+    "filterByCategory": "카테고리별 필터",
+    "allAccounts": "모든 계정",
+    "allTypes": "모든 유형",
+    "categoryPlaceholder": "카테고리를 입력하세요",
+    "filterByDateFrom": "날짜부터 필터링",
+    "filterByDateTo": "날짜까지 필터링",
+    "clearFilters": "필터 지우기",
+    "filterByPeriod": "기간별 필터",
+    "allPeriods": "모든 기간",
+    "lastWeek": "지난 주",
+    "lastMonth": "지난 달",
+    "lastYear": "지난 해"
   },
   "username": "사용자 이름",
   "password": "비밀번호",
@@ -81,25 +90,27 @@
     "createSuccess": "거래가 성공적으로 생성되었습니다!",
     "createError": "거래 생성 중 오류가 발생했습니다! 다시 시도하세요.",
     "uploadSuccess": "프로필 이미지가 성공적으로 업데이트되었습니다!",
-    "uploadError": "프로필 이미지 업데이트 중 오류가 발생했습니다! 다시 시도하세요."
+    "uploadError": "프로필 이미지 업데이트 중 오류가 발생했습니다! 다시 시도하세요.",
+    "planUpdated": "플랜이 성공적으로 업데이트되었습니다!",
+    "planUpdateError": "플랜 업데이트 중 오류가 발생했습니다! 다시 시도하세요."
   },
-    "image": {
-        "changeImage": "프로필 이미지 변경",
-        "uploadedImage": "업로드된 이미지",
-        "url": "이미지 URL",
-        "viewImage": "전체 이미지 보기",
-        "uploadImage": "이미지 업로드"
-    },
-    "accounts": {
-        "accounts": "계정",
-        "uyu": "페소 계정",
-        "usd": "달러 계정",
-        "usage": "무료 플랜 사용량",
-        "premium": "프리미엄 플랜으로 무제한 거래"
-    },
-    "aboutUs": {
-        "aboutUs": "회사 소개",
-        "title": "회사 소개",
-        "description": "우리는 우루과이 ORT 대학의 두 학생인 Matías Oreiro와 Matías Pietrafesa입니다. 이것은 우리의 첫 번째 풀스택 개발 프로젝트입니다. 우리의 프로젝트는 개인 재정을 효율적이고 간단하게 관리할 수 있도록 돕는 데 전념하고 있습니다. 우리의 애플리케이션은 수입과 지출을 자세히 추적할 수 있게 해주며, 재정 상황을 더 잘 이해할 수 있도록 시각적 도구를 제공합니다. 우리는 금융 교육의 중요성을 믿으며 직관적이고 안전한 경험을 제공하기 위해 최선을 다하고 있습니다. 더 나은 재정 관리를 위한 여정에 우리를 동반해 주셔서 감사합니다!"
-    }
+  "image": {
+    "changeImage": "프로필 이미지 변경",
+    "uploadedImage": "업로드된 이미지",
+    "url": "이미지 URL",
+    "viewImage": "전체 이미지 보기",
+    "uploadImage": "이미지 업로드"
+  },
+  "accounts": {
+    "accounts": "계정",
+    "uyu": "페소 계정",
+    "usd": "달러 계정",
+    "usage": "무료 플랜 사용량",
+    "premium": "프리미엄 플랜으로 무제한 거래!"
+  },
+  "aboutUs": {
+    "aboutUs": "회사 소개",
+    "title": "회사 소개",
+    "description": "우리는 우루과이 ORT 대학의 두 학생인 Matías Oreiro와 Matías Pietrafesa입니다. 이것은 우리의 첫 번째 풀스택 개발 프로젝트입니다. 우리의 프로젝트는 개인 재정을 효율적이고 간단하게 관리할 수 있도록 돕는 데 전념하고 있습니다. 우리의 애플리케이션은 수입과 지출을 자세히 추적할 수 있게 해주며, 재정 상황을 더 잘 이해할 수 있도록 시각적 도구를 제공합니다. 우리는 금융 교육의 중요성을 믿으며 직관적이고 안전한 경험을 제공하기 위해 최선을 다하고 있습니다. 더 나은 재정 관리를 위한 여정에 우리를 동반해 주셔서 감사합니다!"
+  }
 }
